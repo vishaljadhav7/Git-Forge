@@ -3,6 +3,7 @@ import { configDotenv } from "dotenv";
 import { authRouter } from './routes/auth.route';
 import { logger } from './config/logger';
 import { errorHandler, notFoundHandler } from './middlewares/error.middleware';
+import cors from 'cors'
 
 const app = express();
 
@@ -10,7 +11,13 @@ configDotenv();
 
 const PORT = process.env.PORT || 3000;
 
+app.use(cors({
+   origin: ["http://localhost:3000"],
+  methods : ["GET", "POST"],
+  credentials: true 
+}));
 app.use(express.json());
+
 
 app.get("/", (req : Request, res : Response) => {
     res.status(200).json("Healthy server!");
