@@ -24,7 +24,7 @@ export class AuthController {
 
         const {user, token} = await this.authService.signUp(userData)
         
-        res
+        res 
         .status(StatusCodes.CREATED)
         .cookie('token', token, options)
         .json({

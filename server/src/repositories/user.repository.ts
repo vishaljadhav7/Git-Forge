@@ -1,9 +1,8 @@
 import { prisma } from "../utils/client";
 import { ICreateUserData, IUserWithPassword } from "../models/user.model";
-
-
+ 
 export class UserRepository {
-
+ 
     async findByEmail(email : string): Promise<IUserWithPassword | null>{
         return  prisma.user.findUnique({
             where : {

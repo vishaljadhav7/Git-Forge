@@ -34,3 +34,54 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+
+
+project-root/
+├── .next/
+├── node_modules/
+├── public/
+│   ├── favicon.ico
+│   └── images/
+├── src/
+│   ├── app/                    
+│   │   ├── (auth)/             
+│   │   │   ├── sign-in/        
+│   │   │   │   └── page.tsx
+│   │   │   └── sign-up/         
+│   │   │       └── page.tsx
+│   │   ├── page.tsx             
+│   │   └── layout.tsx           
+│   ├── components/
+│   │   ├── ui/                 
+│   │   │   ├── button.tsx
+│   │   │   ├── form.tsx
+│   │   │   └── ...
+│   │   └── custom/             
+│   │       ├── common/         
+│   │       │   ├── header.tsx
+│   │       │   └── footer.tsx
+│   │       ├── auth/            
+│   │       │   ├── login-form.tsx
+│   │       │   └── signup-form.tsx
+│   │       └── feature/         
+│   │           └── ...
+│   ├── hooks/                    
+│   │   └── use-auth.ts
+│   ├── lib/                      
+│   │   ├── utils.ts
+│   │   └── constants.ts          
+│   ├── styles/                 
+│   │   └── globals.css
+│   └── types/                   
+│       └── index.ts
+├── .env.local                  
+├── .gitignore
+├── next.config.js
+├── package.json
+├── tailwind.config.js
+├── components.json             
+├── tsconfig.json
+└── README.md

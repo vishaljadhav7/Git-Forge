@@ -1,12 +1,15 @@
+'use client'
 import React from 'react'
-import { Github } from 'lucide-react'
+import { Github , LogOut} from 'lucide-react'
 import Link from 'next/link'
-// import { Button } from '../ui/button'
 import { Button } from '@/components/ui/button'
+import { useAppSelector } from '@/store/hooks'
 
 const Navbar = () => {
+  const {isAuthenticated} = useAppSelector(store => store.user);
+
   return (
-         <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200  ">
+      <header className="w-full bg-white/80 backdrop-blur-md border-b border-slate-200 h-[63px]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -15,6 +18,13 @@ const Navbar = () => {
                 Git Forge
               </span>
             </div>
+
+           {
+            isAuthenticated ? 
+            <Button className='p-2' variant={"outline"}>
+              <LogOut />
+            </Button>
+            :          
             <div className="flex items-center">
               <Link href={"/sign-in"}>
                 <Button variant="ghost" className="mr-2">
@@ -27,6 +37,8 @@ const Navbar = () => {
                 </Button>
               </Link>
             </div>
+           }
+
           </div>
         </div>
       </header>

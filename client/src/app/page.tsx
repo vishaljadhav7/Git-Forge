@@ -15,6 +15,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 import Link from "next/link";
+import Navbar from "@/components/custom/Navbar";
 
 export default function Home() {
 
@@ -59,7 +60,8 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-slate-50 to-slate-100  ">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 ">
+      <Navbar/>
       <section className="w-full max-w-6xl px-4 pt-32 pb-20 mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

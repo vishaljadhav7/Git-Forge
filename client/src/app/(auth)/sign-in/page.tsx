@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { Mail, Lock, AlertCircle, Loader } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { addUser } from "@/lib/features/user/userSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { addUser } from "@/store/features/user/userSlice";
 import { useRouter } from 'next/navigation';
 
 const signInSchema = z.object({
@@ -22,7 +22,6 @@ const signInSchema = z.object({
 type FormField = z.infer<typeof signInSchema>;
 
 const SignIn = () => {
-  const authStatus = useAppSelector((store) => store.user.isAuthenticated);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -36,11 +35,6 @@ const SignIn = () => {
     resolver: zodResolver(signInSchema),
   });
 
-  useEffect(() => {
-    if (authStatus) {
-      router.push("/dashboard");
-    }
-  }, [router, authStatus]);
 
   const onSubmit: SubmitHandler<FormField> = async (data) => {
     setApiError(null);

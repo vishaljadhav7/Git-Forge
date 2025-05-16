@@ -6,7 +6,6 @@ export interface IUser {
   createdAt: Date;
 }
 
-
 export interface IUserWithPassword extends IUser {
   password: string;
 }
