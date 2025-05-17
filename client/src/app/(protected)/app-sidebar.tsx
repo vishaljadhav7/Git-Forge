@@ -12,10 +12,11 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarMenu,
-  SidebarFooter
+  SidebarFooter,
+  useSidebar
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
-import { Github, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -55,13 +56,14 @@ const allProjects = [
 
 const AppSidebar = () => {
   const pathName = usePathname();
+  const {open} = useSidebar()
   const projectId = 1;
   return (
     <Sidebar collapsible="icon" variant="floating">
       <SidebarHeader>
-        <div className="flex items-center  p-2">
-          <Github className="w-6 h-6 mr-2 text-purple-600 " />
-          <span className="text-xl font-bold text-slate-900 ">Git Forge</span>
+        <div className="flex items-center p-2">
+          {!open && <span className="text-xl font-bold text-purple-400 ">GF</span>}
+         {open && <span className="text-xl font-bold text-slate-900 ">Git Forge</span>}
         </div>
       </SidebarHeader>
 
@@ -124,7 +126,7 @@ const AppSidebar = () => {
             variant={"outline"}
             >
               <Plus/>
-              Create Project 
+              {open && "Create Project"} 
             </Button>
           </SidebarGroupContent>
         </SidebarGroup>

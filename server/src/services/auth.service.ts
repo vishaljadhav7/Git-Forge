@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { IAuthResult, ICreateUserData, IUser } from "../models/user.model";
+import { IAuthResult, ICreateUserData } from "../models/user.model";
 import { UserRepository } from "../repositories/user.repository";
 import { hashPassword, comparePasswords } from "../utils/password.utils";
 import {

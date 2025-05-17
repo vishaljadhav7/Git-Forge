@@ -1,29 +1,41 @@
 'use client'
-import React from "react";
+
+import React, { useState } from "react";
 import { SidebarProvider , SidebarTrigger} from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useAppSelector } from "@/store/hooks";
 import AppSidebar from "./app-sidebar";
+import { useEffect } from "react";
+import { useAppSelector } from "@/store/hooks";
+import { useRouter } from "next/navigation";
+import { Loader } from "lucide-react";
+
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
+ const authStatus = useAppSelector(store => store.user.isAuthenticated);
+ const [loading, setLoading] = useState<boolean>(true)
+ const router = useRouter();
 
-  const {userInfo} = useAppSelector(store => store.user)
+ useEffect(()=>{
+  if(authStatus){
+    router.push("/")
+  }else{
+    setLoading(false)
+  }
+ }, [router, authStatus])
+ 
+ if(loading){
+  return ( 
+  <div className="w-screen h-screen flex justify-center items-center">
+     <Loader className="animate-spin"/>
+  </div>
+ )
+ }
 
   return (
     <SidebarProvider>
       {<AppSidebar/>}
-      <main className="w-full m-1">
-           <SidebarTrigger />
-        <div className="flex items-center gap-2 border-sidebar-border bg-border shadow rounded-md p-2 px-4">
-          {/* {<SearchBar/>} */}
-          <div className="ml-auto"></div>
-          <Avatar>
-            <AvatarImage src={userInfo?.profilePic} />
-            <AvatarFallback>{userInfo?.userName}</AvatarFallback>
-          </Avatar>
-        </div>
-        <div className="h-4"></div>
-        <div className="border-sidebar-border bg-sidebar border shadow rounded-md overflow-y-scroll h-[calc(100vh-4rem)] p-4">
+      <main className="w-full m-2">
+        <div className="border-sidebar-border bg-sidebar border shadow rounded-md overflow-y-scroll h-full p-4">
+        <SidebarTrigger />
           {children}
         </div>
       </main>

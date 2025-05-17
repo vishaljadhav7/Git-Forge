@@ -1,9 +1,13 @@
+import { IUserToProject } from "./project.model";
+import { prisma } from "../utils/client";
 
 export interface IUser {
   id: string;
   email: string;
   userName: string | null;
   createdAt: Date;
+  credits : number;
+  userToProjects? : IUserToProject[]
 }
 
 export interface IUserWithPassword extends IUser {
