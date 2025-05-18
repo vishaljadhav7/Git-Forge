@@ -1,6 +1,6 @@
 
 import bcrypt from 'bcrypt';
-import { InternalServerError } from './error.handler';
+import { InternalServerError } from './error.utils';
 
 
 export const hashPassword = async (password: string): Promise<string> => {

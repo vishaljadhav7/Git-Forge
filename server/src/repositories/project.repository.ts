@@ -1,4 +1,4 @@
-import { prisma } from "../utils/client";
+import { prisma } from "../utils/client.utils";
 import { ICreateProjectData , IProject} from "../models/project.model";
 
 export class ProjectRepository {
@@ -15,5 +15,13 @@ export class ProjectRepository {
                 }
             }
         })
+    }
+
+    async findProjectById(projectId : string): Promise<IProject | null>{
+       return prisma.project.findUnique({
+        where : {
+            id : projectId
+        }
+       }) 
     }
 }

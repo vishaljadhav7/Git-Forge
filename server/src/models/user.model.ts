@@ -1,5 +1,5 @@
 import { IUserToProject } from "./project.model";
-import { prisma } from "../utils/client";
+import { prisma } from "../utils/client.utils";
 
 export interface IUser {
   id: string;

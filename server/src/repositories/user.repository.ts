@@ -1,4 +1,4 @@
-import { prisma } from "../utils/client";
+import { prisma } from "../utils/client.utils";
 import { ICreateUserData, IUserWithPassword } from "../models/user.model";
  
 export class UserRepository {

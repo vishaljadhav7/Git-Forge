@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express"; 
-import {prisma} from '../utils/client';
+import {prisma} from '../utils/client.utils';
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { NotFoundError, UnauthorizedError } from "../utils/error.handler";
+import { NotFoundError, UnauthorizedError } from "../utils/error.utils";
 
 
 interface User {

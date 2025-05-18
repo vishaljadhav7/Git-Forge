@@ -1,3 +1,4 @@
+import { ICommit } from "./commit.model";
 
 export interface IUserToProject{
    id: string; 
@@ -17,4 +18,5 @@ export interface IProject extends ICreateProjectData {
   createdAt : Date;
   updatedAt : Date;
   userToProjects? : IUserToProject[]
+  commits? : ICommit[]
 }

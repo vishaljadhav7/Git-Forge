@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { AppError } from '../utils/error.handler';
+import { AppError } from '../utils/error.utils';
 import { logger } from '../config/logger';
 
 

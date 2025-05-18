@@ -1,7 +1,7 @@
 import { ProjectRepository } from "../repositories/project.repository";
 import { logger } from "../config/logger";
 import { ICreateProjectData, IProject } from "../models/project.model";
-import { InternalServerError } from "../utils/error.handler";
+import { InternalServerError } from "../utils/error.utils";
 
 export class ProjectService {
    private projectRepository : ProjectRepository;

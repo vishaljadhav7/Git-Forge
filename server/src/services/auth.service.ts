@@ -6,7 +6,7 @@ import {
   ConflictError,
   UnauthorizedError,
   InternalServerError,
-} from "../utils/error.handler";
+} from "../utils/error.utils";
 import { logger } from "../config/logger";
 
 export class AuthService {

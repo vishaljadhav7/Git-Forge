@@ -101,9 +101,9 @@ const AppSidebar = () => {
                 return (
                   <SidebarMenuItem key={project.id} className="list-none">
                     <SidebarMenuButton>
+                      <Link href={`/project/${project.id}`}  key={project.id}>                      
                       <div className="flex items-center  gap-2">
                         <div
-                          key={project.id}
                           className={cn(
                             "rounded-sm border size-6 flex items-center justify-center text-sm bg-white text-primary",
                             {
@@ -115,6 +115,7 @@ const AppSidebar = () => {
                         </div>
                         <span>{project.name}</span>
                       </div>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );

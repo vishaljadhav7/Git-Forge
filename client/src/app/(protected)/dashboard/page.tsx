@@ -12,8 +12,8 @@ const formSchema = z.object({
   githubUrl: z
     .string()
     .regex(
-      /^https:\/\/github\.com\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+/,
-      { message: 'Invalid GitHub URL. Use format: https://github.com/owner/repo' }
+      /^https:\/\/github\.com\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+\/?$/,
+      { message: 'Invalid GitHub URL. Use format: https://github.com/<owner>/<repo>' }
     ),
   githubToken: z.string().optional(),
 })

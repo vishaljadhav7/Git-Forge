@@ -14,4 +14,4 @@ export const projectSchema = z.object({
   githubToken: z.string().optional(),
 })
 
-export type projectSchema = z.infer<typeof projectSchema>;
+export type projectSchema = z.infer<typeof projectSchema>; 
