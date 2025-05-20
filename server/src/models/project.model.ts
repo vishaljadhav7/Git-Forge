@@ -17,6 +17,8 @@ export interface IProject extends ICreateProjectData {
   id: string; 
   createdAt : Date;
   updatedAt : Date;
-  userToProjects? : IUserToProject[]
+  ownerId : string;
+  deletedAt? : Date | null;
+  collaborators? : IUserToProject[]
   commits? : ICommit[]
 }

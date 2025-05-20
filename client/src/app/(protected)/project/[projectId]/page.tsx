@@ -8,7 +8,9 @@ const resolvedParams = React.use(params);
   const { projectId } = resolvedParams;
 
   return (
-    <div>Project : {projectId}</div>
+    <div className=''>
+      Project : {projectId}
+    </div>
   )
 }
 

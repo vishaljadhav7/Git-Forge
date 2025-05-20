@@ -3,5 +3,8 @@ node_modules/
 dist/
 
 
+
 # Environment variables
 .env
+
+notes.md

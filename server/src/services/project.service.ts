@@ -23,4 +23,18 @@ export class ProjectService {
         
         return newProject;
    }
+
+   async retrieveProjects(userId : string){
+        logger.info(`Attempting to retrieve projects for userId : ${userId}`); 
+
+        const allProjects = await this.projectRepository.findProjectsByUserId(userId);
+
+        if(!allProjects){
+             throw new InternalServerError("Failed to fetch project");
+        }
+
+        logger.info(`all projects retrieved`);
+
+        return allProjects;
+   }
 }

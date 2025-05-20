@@ -15,7 +15,7 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
  const router = useRouter();
 
  useEffect(()=>{
-  if(authStatus){
+  if(!authStatus){
     router.push("/")
   }else{
     setLoading(false)
@@ -32,7 +32,7 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SidebarProvider>
-      {<AppSidebar/>}
+      <AppSidebar/>
       <main className="w-full m-2">
         <div className="border-sidebar-border bg-sidebar border shadow rounded-md overflow-y-scroll h-full p-4">
         <SidebarTrigger />

@@ -130,7 +130,6 @@ export const getCommitSummaries = async (githubUrl: string): Promise<ICommitsWit
       }
     }
   );
-
   const commits = data
     
     if (!commits || commits.length === 0) {

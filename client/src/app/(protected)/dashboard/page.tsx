@@ -3,6 +3,7 @@
 import React, { useState, FormEvent } from 'react'
 import { z } from 'zod'
 import Image from 'next/image'
+import { useCreateProjectMutation } from '@/store/features/api'
 
 const formSchema = z.object({
   projectName: z
@@ -40,6 +41,9 @@ const Dashboard: React.FC = () => {
   const [errors, setErrors] = useState<Errors>({})
   const [submitError, setSubmitError] = useState<string | null>(null)
 
+  
+  const [createTask, { isLoading }] = useCreateProjectMutation()
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
@@ -60,6 +64,8 @@ const Dashboard: React.FC = () => {
 
      
       console.log('Validated data:', validatedData)
+ 
+      await createTask({project : validatedData}).unwrap() 
 
     } catch (err) {
       if (err instanceof z.ZodError) {
@@ -73,6 +79,7 @@ const Dashboard: React.FC = () => {
       }
     }
   }
+
 
   return (
     <div className="h-full bg-gray-50 flex items-center justify-center p-4">
@@ -159,9 +166,10 @@ const Dashboard: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-1.5 px-4 rounded-md hover:bg-indigo-700 transition-colors text-sm"
+              disabled={isLoading}
+              className={`w-full ${isLoading ? "bg-indigo-200" : "bg-indigo-600 cursor-pointer"} text-white py-1.5 px-4 rounded-md hover:bg-indigo-700 transition-colors text-sm `}
             >
-              Create Project
+              {isLoading ? "Creating new project....." : "Create Project"}
             </button>
           </form>
         </div>

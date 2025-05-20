@@ -1,7 +1,14 @@
 "use client";
 
 import React from "react";
-import { LayoutDashboard, Bot, CreditCard } from "lucide-react";
+import { LayoutDashboard, Bot, CreditCard , ChevronUp, User2} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 import {
   Sidebar,
   SidebarContent,
@@ -20,6 +27,8 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useAppSelector } from "@/store/hooks";
+import { useFetchAllProjectsQuery } from "@/store/features/api";
 
 const sidebarItems = [
   {
@@ -39,25 +48,17 @@ const sidebarItems = [
   },
 ];
 
-const allProjects = [
-  {
-    id: 1,
-    name: "Project 1",
-  },
-  {
-    id: 2,
-    name: "Project 2",
-  },
-  {
-    id: 3,
-    name: "Project 3",
-  },
-];
+
 
 const AppSidebar = () => {
   const pathName = usePathname();
+  const userInfo = useAppSelector(store => store.user.userInfo)
   const {open} = useSidebar()
-  const projectId = 1;
+  const projectId = "1";
+ 
+  const {data : projects, isLoading} = useFetchAllProjectsQuery();
+
+
   return (
     <Sidebar collapsible="icon" variant="floating">
       <SidebarHeader>
@@ -97,7 +98,11 @@ const AppSidebar = () => {
           <SidebarGroupLabel>Projects</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {allProjects.map((project) => {
+              {isLoading ? 
+              <h3 className="text-2xl text-black font-bold p-2">Loading...</h3>
+               :
+              <>              
+              {projects?.map((project) => {
                 return (
                   <SidebarMenuItem key={project.id} className="list-none">
                     <SidebarMenuButton>
@@ -111,15 +116,16 @@ const AppSidebar = () => {
                             }
                           )}
                         >
-                            {project.id}
+                            {project.projectName.charAt(0).toUpperCase()}
                         </div>
-                        <span>{project.name}</span>
+                        <span>{project.projectName}</span>
                       </div>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
               })}
+              </>}
             </SidebarMenu> 
             <Button
             className="mt-3" 
@@ -133,9 +139,34 @@ const AppSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter>
-       Footer
-      </SidebarFooter>
+         <SidebarFooter className="mb-2 relative">
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <DropdownMenu >
+                <DropdownMenuTrigger asChild>
+                  <SidebarMenuButton>
+                    <User2 /> {userInfo?.userName}
+                    <ChevronUp className="ml-auto" />
+                  </SidebarMenuButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  side="top"
+                  className="w-[220px] absolute bottom-2"
+                >
+                  <DropdownMenuItem>
+                    <span>Account</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <span>Billing</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <span>Sign out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
     </Sidebar>
   );
 };

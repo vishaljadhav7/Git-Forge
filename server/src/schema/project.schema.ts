@@ -1,6 +1,6 @@
 import {z} from 'zod';
  
-export const projectSchema = z.object({
+export const createProjectSchema = z.object({
   projectName: z
     .string()
     .min(4, { message: 'Project name must be at least 4 characters' })
@@ -14,4 +14,5 @@ export const projectSchema = z.object({
   githubToken: z.string().optional(),
 })
 
-export type projectSchema = z.infer<typeof projectSchema>; 
+
+export type createProjectSchema = z.infer<typeof createProjectSchema>; 

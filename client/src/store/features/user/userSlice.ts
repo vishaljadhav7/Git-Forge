@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IProject, IUserToProject } from "@/store/types";
 
-export interface User {
-   id: string;
-   email: string;
-   userName: string;
-   profilePic?: string; 
+export interface IUser {
+  id: string;
+  email: string;
+  userName: string | null;
+  profileUrl? : string;
+  createdAt: Date;
+  credits : number;
+  ownedProjects? : IProject[]
+  collaborations? : IUserToProject[]
 }
 
 export interface userStatus{
-    userInfo : User | null;
+    userInfo : IUser | null;
     isAuthenticated : boolean
 }
 
@@ -21,7 +26,7 @@ const initialState : userStatus = {
     name : "userSlice",
     initialState,
     reducers : {
-       addUser : (state, action: PayloadAction<User>) => {
+       addUser : (state, action: PayloadAction<IUser>) => {
         state.isAuthenticated = true; 
         state.userInfo = action.payload;   
        },

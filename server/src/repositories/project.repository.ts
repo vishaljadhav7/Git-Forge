@@ -8,12 +8,13 @@ export class ProjectRepository {
             data : {
                 projectName : projectData.projectName,
                 githubUrl : projectData.githubUrl,
-                userToProjects : {
+                collaborators : {
                     create : {
-                        userId : userId,
+                       userId : userId,
                     }
-                }
-            }
+                },
+                ownerId : userId 
+            },
         })
     }
 
@@ -24,4 +25,13 @@ export class ProjectRepository {
         }
        }) 
     }
+
+    async findProjectsByUserId(userId : string) : Promise<IProject[] | null>{
+        return prisma.project.findMany({
+            where : {
+                ownerId : userId
+            }
+        })
+    }
 }
+
