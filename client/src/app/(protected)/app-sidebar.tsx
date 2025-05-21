@@ -58,7 +58,6 @@ const AppSidebar = () => {
  
   const {data : projects, isLoading} = useFetchAllProjectsQuery();
 
-
   return (
     <Sidebar collapsible="icon" variant="floating">
       <SidebarHeader>

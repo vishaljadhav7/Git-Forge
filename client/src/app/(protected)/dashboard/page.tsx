@@ -3,7 +3,7 @@
 import React, { useState, FormEvent } from 'react'
 import { z } from 'zod'
 import Image from 'next/image'
-import { useCreateProjectMutation } from '@/store/features/api'
+import { useCreateProjectMutation, useGenerateCommitsMutation } from '@/store/features/api'
 
 const formSchema = z.object({
   projectName: z
@@ -42,7 +42,8 @@ const Dashboard: React.FC = () => {
   const [submitError, setSubmitError] = useState<string | null>(null)
 
   
-  const [createTask, { isLoading }] = useCreateProjectMutation()
+  const [createProject, { isLoading }] = useCreateProjectMutation()
+  const [generateCommits, {isLoading : commitsLoading}] = useGenerateCommitsMutation()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -63,10 +64,10 @@ const Dashboard: React.FC = () => {
       })
 
      
-      console.log('Validated data:', validatedData)
- 
-      await createTask({project : validatedData}).unwrap() 
-
+      
+      const project = await createProject({project : validatedData}).unwrap() 
+      console.log('Validated data:', project)
+      await generateCommits({projectId : project.id}).unwrap() 
     } catch (err) {
       if (err instanceof z.ZodError) {
         const fieldErrors: Errors = {}
@@ -166,10 +167,11 @@ const Dashboard: React.FC = () => {
 
             <button
               type="submit"
-              disabled={isLoading}
-              className={`w-full ${isLoading ? "bg-indigo-200" : "bg-indigo-600 cursor-pointer"} text-white py-1.5 px-4 rounded-md hover:bg-indigo-700 transition-colors text-sm `}
+              disabled={isLoading || commitsLoading}
+              className={`w-full ${isLoading || commitsLoading ? "bg-indigo-200" : "bg-indigo-600 cursor-pointer"} text-white py-1.5 px-4 rounded-md hover:bg-indigo-700 transition-colors text-sm `}
             >
-              {isLoading ? "Creating new project....." : "Create Project"}
+              {isLoading || commitsLoading ? "Loading....." : "Create Project"}
+              
             </button>
           </form>
         </div>

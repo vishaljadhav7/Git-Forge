@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IProject, ICreateProjectData, ICommit } from "../types";
+import { IProject, ICreateProjectData, ICommit} from "../types";
 
 export const api = createApi({
     reducerPath : "api",
@@ -15,7 +15,7 @@ export const api = createApi({
         fetchAllProjects : build.query<IProject[], void>({
             query : () => `/project`,
             providesTags : ["Projects"],
-            transformResponse : (data : {allProjects : IProject[]}) => data.allProjects
+             transformResponse : (data : {data : IProject[]}) => data.data
         }),
 
         createProject : build.mutation<IProject, {project : ICreateProjectData}>({
@@ -31,14 +31,21 @@ export const api = createApi({
         generateCommits : build.mutation<ICommit[], {projectId : string}>({
             query : ({projectId}) => ({
                 method : "POST",
-                url : "/commit-summarise",
-                body : projectId
+                url : "/commit-summary",
+                body : {projectId}
             }),
-            invalidatesTags : ["Commits"],
+            // invalidatesTags : ["Commits"],
              transformResponse : (data : {data :  ICommit[]}) => data.data
+        }),
+
+        fetchAllCommits : build.query<ICommit[], {projectId : string}>({
+            query : ({projectId}) => ({
+                url : `/commit-summary/${projectId}`,
+            }),
+            transformResponse : (data : {data :  ICommit[]}) => data.data
         })
     })
 })
 
 
-export const {useCreateProjectMutation, useFetchAllProjectsQuery, useGenerateCommitsMutation}  = api;
+export const {useCreateProjectMutation, useFetchAllProjectsQuery, useGenerateCommitsMutation, useFetchAllCommitsQuery}  = api;

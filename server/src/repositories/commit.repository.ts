@@ -4,28 +4,18 @@ import { logger } from "../config/logger";
 import { InternalServerError } from "../utils/error.utils";
 
 export class CommitRepository {
- async insertManyCommits(commits: ICommitsWithSummary[], projectId: string): Promise<ICommit[]> {
+  async insertManyCommits(commits: ICommitsWithSummary[], projectId: string): Promise<ICommit[]> {
     try {
       logger.info(`Inserting ${commits.length} commits for project: ${projectId}`);
       
-      if (!commits || commits.length === 0) {
-        throw new Error("No commits provided for insertion");
-      }
-      
-      if (!projectId) {
-        throw new Error("Project ID is required");
-      }
-
-     
       await prisma.commit.createMany({
-        data: commits.map((commit) => ({
+        data: commits.map((commit) => ({  
           ...commit,
           projectId
         }))
       });
-
-   
-      const createdCommits = await prisma.commit.findMany({
+      
+      return await prisma.commit.findMany({
         where: {
           projectId,
           commitHash: {
@@ -33,12 +23,22 @@ export class CommitRepository {
           }
         }
       });
-
-      logger.info(`Successfully inserted ${createdCommits.length} commits for project: ${projectId}`);
-      return createdCommits;
     } catch (error) {
-      logger.error(`Error inserting commits for project ${projectId}: ${error}`);
-      throw new InternalServerError(`Failed to save commits: ${(error as Error).message}`);
+      logger.error(`Error inserting commits: ${(error as Error).message}`);
+      throw new InternalServerError(`Failed to insert commits: ${(error as Error).message}`);
+    }
+  }
+  
+  async findCommits(projectId: string): Promise<ICommit[]> {
+    try {
+      return await prisma.commit.findMany({
+        where: {
+          projectId
+        }
+      });
+    } catch (error) {
+      logger.error(`Error finding commits: ${(error as Error).message}`);
+      throw new InternalServerError(`Failed to find commits: ${(error as Error).message}`);
     }
   }
 }

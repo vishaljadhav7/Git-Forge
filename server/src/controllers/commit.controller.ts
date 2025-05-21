@@ -8,13 +8,11 @@ import { BadRequestError } from '../utils/error.utils';
 
 export class CommitController {
   private commitService: CommitService;
-
-
+  
   constructor(commitService: CommitService) {
     this.commitService = commitService;
   }
-
-
+  
   summarizeAndSaveCommits = async (
     req: Request,
     res: Response,
@@ -23,27 +21,47 @@ export class CommitController {
     try {
       logger.info('Processing request to summarize and save commits');
       
-      // Validate request body
-      const commitData = req.body as commitSchemaType;
-      const { projectId } = commitData;
+      const { projectId } = req.body as commitSchemaType;
       
       if (!projectId) {
         throw new BadRequestError('Project ID is required');
       }
-
-      // Process the request through the service layer
+      
       const savedAndSummarisedCommits = await this.commitService.insertCommits(projectId);
       
       logger.info(`Successfully processed ${savedAndSummarisedCommits.length} commits for project ${projectId}`);
       
-     
       res.status(StatusCodes.CREATED).json({
+        success: true,
         data: savedAndSummarisedCommits,
         message: "Commits successfully processed and summarized"
       });
     } catch (error) {
-      logger.error('Error in summarizeAndSaveCommits: error');
-      next(error);
+      next(error); 
+    }
+  };
+  
+  getSummarisedCommits = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const { projectId } = req.params;
+      
+      if (!projectId) {
+        throw new BadRequestError('Project ID is required');
+      }
+      
+      const allCommits = await this.commitService.findCommits(projectId as string);
+      
+      res.status(StatusCodes.OK).json({
+        success: true,
+        data: allCommits,
+        message: "Commits successfully retrieved"
+      });
+    } catch (error) {
+      next(error); 
     }
   };
 }

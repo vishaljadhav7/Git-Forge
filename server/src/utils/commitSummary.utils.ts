@@ -114,7 +114,6 @@ export const getCommitSummaries = async (githubUrl: string): Promise<ICommitsWit
     throw new BadRequestError("GitHub URL is required");
   }
   
-  // Extract owner and repo from URL
   const  [owner, repo]  = githubUrl.split("/").slice(-2);
   
   try {
@@ -130,6 +129,7 @@ export const getCommitSummaries = async (githubUrl: string): Promise<ICommitsWit
       }
     }
   );
+  
   const commits = data
     
     if (!commits || commits.length === 0) {

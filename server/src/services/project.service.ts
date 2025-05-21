@@ -1,7 +1,7 @@
 import { ProjectRepository } from "../repositories/project.repository";
 import { logger } from "../config/logger";
 import { ICreateProjectData, IProject } from "../models/project.model";
-import { InternalServerError } from "../utils/error.utils";
+import { InternalServerError , BadRequestError} from "../utils/error.utils";
 
 export class ProjectService {
    private projectRepository : ProjectRepository;
@@ -11,6 +11,11 @@ export class ProjectService {
    };
 
    async generateProject(projectData : ICreateProjectData, userId : string) : Promise<IProject| null>{
+     
+        if (!projectData || !userId) {
+        throw new BadRequestError("Project data and user ID are required");
+        }
+
         logger.info(`Attempting to create project : ${projectData.projectName}`); 
 
         const newProject = await this.projectRepository.createProject(projectData, userId);
@@ -25,6 +30,9 @@ export class ProjectService {
    }
 
    async retrieveProjects(userId : string){
+        if (!userId) {
+         throw new BadRequestError("User ID is required");
+        }
         logger.info(`Attempting to retrieve projects for userId : ${userId}`); 
 
         const allProjects = await this.projectRepository.findProjectsByUserId(userId);
@@ -38,3 +46,4 @@ export class ProjectService {
         return allProjects;
    }
 }
+
