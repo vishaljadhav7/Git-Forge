@@ -161,6 +161,14 @@ exports.Prisma.CommitScalarFieldEnum = {
   summary: 'summary'
 };
 
+exports.Prisma.SourceCodeEmbeddingScalarFieldEnum = {
+  id: 'id',
+  sourceCode: 'sourceCode',
+  fileName: 'fileName',
+  summary: 'summary',
+  projectId: 'projectId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -181,7 +189,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Project: 'Project',
   UserToProject: 'UserToProject',
-  Commit: 'Commit'
+  Commit: 'Commit',
+  SourceCodeEmbedding: 'SourceCodeEmbedding'
 };
 
 /**

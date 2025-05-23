@@ -7,6 +7,7 @@ import { errorHandler, notFoundHandler } from './middlewares/error.middleware';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import { commitRouter } from './routes/commit.route';
+import { repoRouter } from './routes/repo.route';
 const app = express();
 
 configDotenv();
@@ -28,7 +29,7 @@ app.get("/", (req : Request, res : Response) => {
 app.use("/api/auth", authRouter);
 app.use("/api", projectRouter)
 app.use("/api", commitRouter);
-
+app.use("/api", repoRouter);
 
 
 // Handle 404 errors
