@@ -125,18 +125,18 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   profileUrl: 'profileUrl',
-  credits: 'credits',
   userName: 'userName',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  credits: 'credits'
 };
 
 exports.Prisma.ProjectScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  projectName: 'projectName',
   githubUrl: 'githubUrl',
   deletedAt: 'deletedAt',
+  projectName: 'projectName',
   ownerId: 'ownerId'
 };
 
@@ -157,8 +157,8 @@ exports.Prisma.CommitScalarFieldEnum = {
   commitHash: 'commitHash',
   commitAuthorName: 'commitAuthorName',
   commitAuthorAvatar: 'commitAuthorAvatar',
-  commitDate: 'commitDate',
-  summary: 'summary'
+  summary: 'summary',
+  commitDate: 'commitDate'
 };
 
 exports.Prisma.SourceCodeEmbeddingScalarFieldEnum = {

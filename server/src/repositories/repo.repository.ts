@@ -1,7 +1,6 @@
 import { prisma } from "../utils/client.utils";
 import { InternalServerError } from "../utils/error.utils";
 import { logger } from "../config/logger";
-import { Prisma } from "../../generated/prisma";
 
 interface FileData {
   fileName: string;
@@ -12,53 +11,82 @@ interface FileData {
   } | null;
 }
 
+
+
 export class RepoRepository {
-  async addFileswithSummaryAndEmbeddingsTransaction(
+  async addFileswithSummaryAndEmbeddings(
     data: FileData[],
     projectId: string
-  ) {
-
+  ): Promise<void> {
     if (!data?.length || !projectId?.trim()) {
       throw new Error("Invalid input: data and projectId are required");
     }
 
-    try {
-      return await prisma.$transaction(async (tx) => {
-        const results = [];
-
-        for (const fileItem of data) {
-          // Create the record
-          const sourceCodeEmbedding = await tx.sourceCodeEmbedding.create({
-            data: {
-              fileName: fileItem.fileName,
-              sourceCode: fileItem.sourceCode,
-              summary: fileItem.summary,
-              projectId: projectId,
-            },
-          });
-
-   
-          if (fileItem.summaryEmbedding && fileItem.summaryEmbedding.values?.length) {
-            try {
-              await tx.$executeRaw(
-                Prisma.sql`UPDATE "SourceCodeEmbedding" 
-                           SET "summaryEmbedding" = ${fileItem.summaryEmbedding.values}::vector
-                           WHERE "id" = ${sourceCodeEmbedding.id}`
-              );
-            } catch (embeddingError) {
-              logger.error(`Failed to update embedding for ${fileItem.fileName}: ${embeddingError}`,);
   
-            }
-          }
 
-          results.push(sourceCodeEmbedding);
+    // Process files sequentially to avoid transaction conflicts and ensure partial success
+    for (const fileItem of data) {
+      try {
+        // Create the record
+        const sourceCodeEmbedding = await prisma.sourceCodeEmbedding.create({
+          data: {
+            fileName: fileItem.fileName,
+            sourceCode: fileItem.sourceCode,
+            summary: fileItem.summary,
+            projectId: projectId,
+          },
+        });
+
+        logger.info(
+          `Created SourceCodeEmbedding for file: ${fileItem.fileName}, ID: ${sourceCodeEmbedding.id}`
+        );
+
+        // Update summaryEmbedding if present using raw query
+        if (fileItem.summaryEmbedding && fileItem.summaryEmbedding?.values) {
+          try {
+            // Validate that all values are valid numbers
+            if (
+              !fileItem.summaryEmbedding.values.every(
+                (val) => typeof val === "number" && !isNaN(val) && isFinite(val)
+              )
+            ) {
+              throw new Error(
+                "Invalid embedding values: must be array of finite numbers"
+              );
+            }
+
+            // Formatting the vector as a string for pgvector
+            const vectorString = `[${fileItem.summaryEmbedding.values.join(",")}]`;
+
+            
+            await prisma.$executeRaw`
+              UPDATE "SourceCodeEmbedding"
+              SET "summaryEmbedding" = ${vectorString}::vector
+              WHERE "id" = ${sourceCodeEmbedding.id}
+            `;
+            logger.info(
+              `Updated summaryEmbedding for file: ${fileItem.fileName}`
+            );
+          } catch (embeddingError) {
+            const errorMessage =
+              embeddingError instanceof Error
+                ? embeddingError.message
+                : String(embeddingError);
+            logger.error(
+              `Failed to update summaryEmbedding for file: ${fileItem.fileName}`
+            );
+
+            continue; // Continue to the next file
+          }
         }
 
-        return results;
-      });
-    } catch (error) {
-      logger.error("Error saving files");
-      throw new InternalServerError("Could not save the files");
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        logger.error(`Failed to process file: ${fileItem.fileName}`);
+
+      }
     }
+    return ;
   }
 }

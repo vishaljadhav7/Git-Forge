@@ -13,7 +13,7 @@ export class RepoService {
     this.repoRepository = repoRepository;
   }
 
-  async loadGitRepo(projectId: string) {
+  async loadGitRepo(projectId: string, branchName : string) {
     if (!projectId?.trim()) {
       throw new BadRequestError("Project ID is required");
     }
@@ -32,15 +32,15 @@ export class RepoService {
 
     try {
       logger.info(`Loading GitHub repo for URL: ${existingProject.githubUrl}`);
-      const repoData = await repoSummaryAndEmbeddings(existingProject.githubUrl);
+      const repoData = await repoSummaryAndEmbeddings(existingProject.githubUrl, branchName);
 
-      const savedResults = await this.repoRepository.addFileswithSummaryAndEmbeddingsTransaction(
+       await this.repoRepository.addFileswithSummaryAndEmbeddings(
         repoData, 
         existingProject.id
       );
 
-      logger.info(`Successfully processed ${savedResults.length} files for project ${projectId}`);
-      return savedResults;
+      logger.info(`Successfully processed files for project ${projectId}`);
+      return ;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       logger.error(`Failed to load GitHub repo for project ${projectId}: ${errorMessage}`);

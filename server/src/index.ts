@@ -12,7 +12,7 @@ const app = express();
 
 configDotenv();
 
-const PORT = process.env.PORT || 3000;
+const PORT = 4000;
 
 app.use(cors({
    origin: ["http://localhost:3000"],
@@ -27,9 +27,9 @@ app.get("/", (req : Request, res : Response) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/repo", repoRouter);
 app.use("/api", projectRouter)
 app.use("/api", commitRouter);
-app.use("/api", repoRouter);
 
 
 // Handle 404 errors

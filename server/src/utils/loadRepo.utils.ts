@@ -99,7 +99,7 @@ const generateSummaryForFile = async (file: { source: string; pageContent: strin
 };
 
 // Generate embedding for a single file
-const generateEmbeddingForFile = async (fileSummary: FileSummaries): Promise<any> => {
+export const generateEmbeddingForFile = async (fileSummary: FileSummaries): Promise<any> => {
   const maxRetries = 3;
   let lastError: any;
 
@@ -155,14 +155,14 @@ const generateEmbeddingForFile = async (fileSummary: FileSummaries): Promise<any
 };
 
 // Main function - optimized for one-by-one processing
-export const repoSummaryAndEmbeddings = async (url: string) => {
+export const repoSummaryAndEmbeddings = async (url: string, branchName : string) => {
   try {
     logger.info(`Starting repository analysis for: ${url}`);
     
     // Load repository
     const loader = new GithubRepoLoader(url, {
       accessToken: process.env.GITHUB_TOKEN!,
-      branch: "main",
+      branch: branchName.toLocaleLowerCase(),
       ignoreFiles: [
         "package-lock.json",
         "yarn.lock",
@@ -185,7 +185,7 @@ export const repoSummaryAndEmbeddings = async (url: string) => {
     const docs = await loader.load();
     logger.info(`Loaded ${docs.length} files from repository`);
 
-    const limitedFiles = docs.length < 81 ? docs.length : 80
+    const limitedFiles = docs.length < 71 ? docs.length : 70;
 
     const repoFiles = docs
       .filter(doc => doc.pageContent.trim().length > 0) // Skip empty files
@@ -249,7 +249,8 @@ export const repoSummaryAndEmbeddings = async (url: string) => {
     // logger.info(`✗ Errors encountered: ${errorCount} files`);
     logger.info(`📊 Total results: ${results.length} files`);
 
-    return results;
+    const res = results.filter((file) => file.summaryEmbedding !== null)
+    return res;
 
   } catch (error: any) {
     logger.error("Error in repoSummaryAndEmbeddings:");

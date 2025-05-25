@@ -43,9 +43,17 @@ export const api = createApi({
                 url : `/commit-summary/${projectId}`,
             }),
             transformResponse : (data : {data :  ICommit[]}) => data.data
+        }),
+
+        loadGitHubRepo : build.mutation({
+            query : ({projectId, branchName}) => ({
+                method : "POST",
+                url : "/repo/load",
+                body : {projectId, branchName}
+            })
         })
     })
 })
 
 
-export const {useCreateProjectMutation, useFetchAllProjectsQuery, useGenerateCommitsMutation, useFetchAllCommitsQuery}  = api;
+export const {useCreateProjectMutation, useFetchAllProjectsQuery, useGenerateCommitsMutation, useFetchAllCommitsQuery, useLoadGitHubRepoMutation}  = api;

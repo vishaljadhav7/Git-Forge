@@ -1273,15 +1273,15 @@ export namespace Prisma {
    */
 
   export type ProjectCountOutputType = {
-    collaborators: number
     commits: number
     sourceCodeEmbedding: number
+    collaborators: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    collaborators?: boolean | ProjectCountOutputTypeCountCollaboratorsArgs
     commits?: boolean | ProjectCountOutputTypeCountCommitsArgs
     sourceCodeEmbedding?: boolean | ProjectCountOutputTypeCountSourceCodeEmbeddingArgs
+    collaborators?: boolean | ProjectCountOutputTypeCountCollaboratorsArgs
   }
 
   // Custom InputTypes
@@ -1298,13 +1298,6 @@ export namespace Prisma {
   /**
    * ProjectCountOutputType without action
    */
-  export type ProjectCountOutputTypeCountCollaboratorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserToProjectWhereInput
-  }
-
-  /**
-   * ProjectCountOutputType without action
-   */
   export type ProjectCountOutputTypeCountCommitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommitWhereInput
   }
@@ -1314,6 +1307,13 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountSourceCodeEmbeddingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SourceCodeEmbeddingWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountCollaboratorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserToProjectWhereInput
   }
 
 
@@ -1346,9 +1346,9 @@ export namespace Prisma {
     email: string | null
     password: string | null
     profileUrl: string | null
-    credits: number | null
     userName: string | null
     createdAt: Date | null
+    credits: number | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1356,9 +1356,9 @@ export namespace Prisma {
     email: string | null
     password: string | null
     profileUrl: string | null
-    credits: number | null
     userName: string | null
     createdAt: Date | null
+    credits: number | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1366,9 +1366,9 @@ export namespace Prisma {
     email: number
     password: number
     profileUrl: number
-    credits: number
     userName: number
     createdAt: number
+    credits: number
     _all: number
   }
 
@@ -1386,9 +1386,9 @@ export namespace Prisma {
     email?: true
     password?: true
     profileUrl?: true
-    credits?: true
     userName?: true
     createdAt?: true
+    credits?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1396,9 +1396,9 @@ export namespace Prisma {
     email?: true
     password?: true
     profileUrl?: true
-    credits?: true
     userName?: true
     createdAt?: true
+    credits?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1406,9 +1406,9 @@ export namespace Prisma {
     email?: true
     password?: true
     profileUrl?: true
-    credits?: true
     userName?: true
     createdAt?: true
+    credits?: true
     _all?: true
   }
 
@@ -1503,9 +1503,9 @@ export namespace Prisma {
     email: string
     password: string
     profileUrl: string | null
-    credits: number
     userName: string
     createdAt: Date
+    credits: number
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1532,9 +1532,9 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     profileUrl?: boolean
-    credits?: boolean
     userName?: boolean
     createdAt?: boolean
+    credits?: boolean
     ownedProjects?: boolean | User$ownedProjectsArgs<ExtArgs>
     collaborations?: boolean | User$collaborationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1545,9 +1545,9 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     profileUrl?: boolean
-    credits?: boolean
     userName?: boolean
     createdAt?: boolean
+    credits?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1555,9 +1555,9 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     profileUrl?: boolean
-    credits?: boolean
     userName?: boolean
     createdAt?: boolean
+    credits?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1565,12 +1565,12 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     profileUrl?: boolean
-    credits?: boolean
     userName?: boolean
     createdAt?: boolean
+    credits?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "profileUrl" | "credits" | "userName" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "profileUrl" | "userName" | "createdAt" | "credits", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ownedProjects?: boolean | User$ownedProjectsArgs<ExtArgs>
     collaborations?: boolean | User$collaborationsArgs<ExtArgs>
@@ -1590,9 +1590,9 @@ export namespace Prisma {
       email: string
       password: string
       profileUrl: string | null
-      credits: number
       userName: string
       createdAt: Date
+      credits: number
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2022,9 +2022,9 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly profileUrl: FieldRef<"User", 'String'>
-    readonly credits: FieldRef<"User", 'Int'>
     readonly userName: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly credits: FieldRef<"User", 'Int'>
   }
     
 
@@ -2493,9 +2493,9 @@ export namespace Prisma {
     id: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    projectName: string | null
     githubUrl: string | null
     deletedAt: Date | null
+    projectName: string | null
     ownerId: string | null
   }
 
@@ -2503,9 +2503,9 @@ export namespace Prisma {
     id: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    projectName: string | null
     githubUrl: string | null
     deletedAt: Date | null
+    projectName: string | null
     ownerId: string | null
   }
 
@@ -2513,9 +2513,9 @@ export namespace Prisma {
     id: number
     createdAt: number
     updatedAt: number
-    projectName: number
     githubUrl: number
     deletedAt: number
+    projectName: number
     ownerId: number
     _all: number
   }
@@ -2525,9 +2525,9 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     updatedAt?: true
-    projectName?: true
     githubUrl?: true
     deletedAt?: true
+    projectName?: true
     ownerId?: true
   }
 
@@ -2535,9 +2535,9 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     updatedAt?: true
-    projectName?: true
     githubUrl?: true
     deletedAt?: true
+    projectName?: true
     ownerId?: true
   }
 
@@ -2545,9 +2545,9 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     updatedAt?: true
-    projectName?: true
     githubUrl?: true
     deletedAt?: true
+    projectName?: true
     ownerId?: true
     _all?: true
   }
@@ -2628,9 +2628,9 @@ export namespace Prisma {
     id: string
     createdAt: Date
     updatedAt: Date
-    projectName: string
     githubUrl: string
     deletedAt: Date | null
+    projectName: string
     ownerId: string
     _count: ProjectCountAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
@@ -2655,14 +2655,14 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    projectName?: boolean
     githubUrl?: boolean
     deletedAt?: boolean
+    projectName?: boolean
     ownerId?: boolean
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-    collaborators?: boolean | Project$collaboratorsArgs<ExtArgs>
     commits?: boolean | Project$commitsArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     sourceCodeEmbedding?: boolean | Project$sourceCodeEmbeddingArgs<ExtArgs>
+    collaborators?: boolean | Project$collaboratorsArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -2670,9 +2670,9 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    projectName?: boolean
     githubUrl?: boolean
     deletedAt?: boolean
+    projectName?: boolean
     ownerId?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
@@ -2681,9 +2681,9 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    projectName?: boolean
     githubUrl?: boolean
     deletedAt?: boolean
+    projectName?: boolean
     ownerId?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
@@ -2692,18 +2692,18 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    projectName?: boolean
     githubUrl?: boolean
     deletedAt?: boolean
+    projectName?: boolean
     ownerId?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "projectName" | "githubUrl" | "deletedAt" | "ownerId", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "githubUrl" | "deletedAt" | "projectName" | "ownerId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-    collaborators?: boolean | Project$collaboratorsArgs<ExtArgs>
     commits?: boolean | Project$commitsArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     sourceCodeEmbedding?: boolean | Project$sourceCodeEmbeddingArgs<ExtArgs>
+    collaborators?: boolean | Project$collaboratorsArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2716,18 +2716,18 @@ export namespace Prisma {
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
     objects: {
-      owner: Prisma.$UserPayload<ExtArgs>
-      collaborators: Prisma.$UserToProjectPayload<ExtArgs>[]
       commits: Prisma.$CommitPayload<ExtArgs>[]
+      owner: Prisma.$UserPayload<ExtArgs>
       sourceCodeEmbedding: Prisma.$SourceCodeEmbeddingPayload<ExtArgs>[]
+      collaborators: Prisma.$UserToProjectPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       createdAt: Date
       updatedAt: Date
-      projectName: string
       githubUrl: string
       deletedAt: Date | null
+      projectName: string
       ownerId: string
     }, ExtArgs["result"]["project"]>
     composites: {}
@@ -3123,10 +3123,10 @@ export namespace Prisma {
    */
   export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    collaborators<T extends Project$collaboratorsArgs<ExtArgs> = {}>(args?: Subset<T, Project$collaboratorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserToProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     commits<T extends Project$commitsArgs<ExtArgs> = {}>(args?: Subset<T, Project$commitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     sourceCodeEmbedding<T extends Project$sourceCodeEmbeddingArgs<ExtArgs> = {}>(args?: Subset<T, Project$sourceCodeEmbeddingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourceCodeEmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    collaborators<T extends Project$collaboratorsArgs<ExtArgs> = {}>(args?: Subset<T, Project$collaboratorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserToProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3159,9 +3159,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
-    readonly projectName: FieldRef<"Project", 'String'>
     readonly githubUrl: FieldRef<"Project", 'String'>
     readonly deletedAt: FieldRef<"Project", 'DateTime'>
+    readonly projectName: FieldRef<"Project", 'String'>
     readonly ownerId: FieldRef<"Project", 'String'>
   }
     
@@ -3559,30 +3559,6 @@ export namespace Prisma {
   }
 
   /**
-   * Project.collaborators
-   */
-  export type Project$collaboratorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserToProject
-     */
-    select?: UserToProjectSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserToProject
-     */
-    omit?: UserToProjectOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserToProjectInclude<ExtArgs> | null
-    where?: UserToProjectWhereInput
-    orderBy?: UserToProjectOrderByWithRelationInput | UserToProjectOrderByWithRelationInput[]
-    cursor?: UserToProjectWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserToProjectScalarFieldEnum | UserToProjectScalarFieldEnum[]
-  }
-
-  /**
    * Project.commits
    */
   export type Project$commitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3628,6 +3604,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SourceCodeEmbeddingScalarFieldEnum | SourceCodeEmbeddingScalarFieldEnum[]
+  }
+
+  /**
+   * Project.collaborators
+   */
+  export type Project$collaboratorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserToProject
+     */
+    select?: UserToProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserToProject
+     */
+    omit?: UserToProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserToProjectInclude<ExtArgs> | null
+    where?: UserToProjectWhereInput
+    orderBy?: UserToProjectOrderByWithRelationInput | UserToProjectOrderByWithRelationInput[]
+    cursor?: UserToProjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserToProjectScalarFieldEnum | UserToProjectScalarFieldEnum[]
   }
 
   /**
@@ -3813,8 +3813,8 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     projectId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userToProject"]>
 
   export type UserToProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3823,8 +3823,8 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     projectId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userToProject"]>
 
   export type UserToProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3833,8 +3833,8 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     projectId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userToProject"]>
 
   export type UserToProjectSelectScalar = {
@@ -3847,23 +3847,23 @@ export namespace Prisma {
 
   export type UserToProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "projectId", ExtArgs["result"]["userToProject"]>
   export type UserToProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type UserToProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type UserToProjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $UserToProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserToProject"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       project: Prisma.$ProjectPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4265,8 +4265,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserToProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4734,8 +4734,8 @@ export namespace Prisma {
     commitHash: string | null
     commitAuthorName: string | null
     commitAuthorAvatar: string | null
-    commitDate: Date | null
     summary: string | null
+    commitDate: Date | null
   }
 
   export type CommitMaxAggregateOutputType = {
@@ -4747,8 +4747,8 @@ export namespace Prisma {
     commitHash: string | null
     commitAuthorName: string | null
     commitAuthorAvatar: string | null
-    commitDate: Date | null
     summary: string | null
+    commitDate: Date | null
   }
 
   export type CommitCountAggregateOutputType = {
@@ -4760,8 +4760,8 @@ export namespace Prisma {
     commitHash: number
     commitAuthorName: number
     commitAuthorAvatar: number
-    commitDate: number
     summary: number
+    commitDate: number
     _all: number
   }
 
@@ -4775,8 +4775,8 @@ export namespace Prisma {
     commitHash?: true
     commitAuthorName?: true
     commitAuthorAvatar?: true
-    commitDate?: true
     summary?: true
+    commitDate?: true
   }
 
   export type CommitMaxAggregateInputType = {
@@ -4788,8 +4788,8 @@ export namespace Prisma {
     commitHash?: true
     commitAuthorName?: true
     commitAuthorAvatar?: true
-    commitDate?: true
     summary?: true
+    commitDate?: true
   }
 
   export type CommitCountAggregateInputType = {
@@ -4801,8 +4801,8 @@ export namespace Prisma {
     commitHash?: true
     commitAuthorName?: true
     commitAuthorAvatar?: true
-    commitDate?: true
     summary?: true
+    commitDate?: true
     _all?: true
   }
 
@@ -4887,8 +4887,8 @@ export namespace Prisma {
     commitHash: string
     commitAuthorName: string
     commitAuthorAvatar: string
-    commitDate: Date
     summary: string
+    commitDate: Date
     _count: CommitCountAggregateOutputType | null
     _min: CommitMinAggregateOutputType | null
     _max: CommitMaxAggregateOutputType | null
@@ -4917,8 +4917,8 @@ export namespace Prisma {
     commitHash?: boolean
     commitAuthorName?: boolean
     commitAuthorAvatar?: boolean
-    commitDate?: boolean
     summary?: boolean
+    commitDate?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["commit"]>
 
@@ -4931,8 +4931,8 @@ export namespace Prisma {
     commitHash?: boolean
     commitAuthorName?: boolean
     commitAuthorAvatar?: boolean
-    commitDate?: boolean
     summary?: boolean
+    commitDate?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["commit"]>
 
@@ -4945,8 +4945,8 @@ export namespace Prisma {
     commitHash?: boolean
     commitAuthorName?: boolean
     commitAuthorAvatar?: boolean
-    commitDate?: boolean
     summary?: boolean
+    commitDate?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["commit"]>
 
@@ -4959,11 +4959,11 @@ export namespace Prisma {
     commitHash?: boolean
     commitAuthorName?: boolean
     commitAuthorAvatar?: boolean
-    commitDate?: boolean
     summary?: boolean
+    commitDate?: boolean
   }
 
-  export type CommitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "projectId" | "commitMessage" | "commitHash" | "commitAuthorName" | "commitAuthorAvatar" | "commitDate" | "summary", ExtArgs["result"]["commit"]>
+  export type CommitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "projectId" | "commitMessage" | "commitHash" | "commitAuthorName" | "commitAuthorAvatar" | "summary" | "commitDate", ExtArgs["result"]["commit"]>
   export type CommitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
   }
@@ -4988,8 +4988,8 @@ export namespace Prisma {
       commitHash: string
       commitAuthorName: string
       commitAuthorAvatar: string
-      commitDate: Date
       summary: string
+      commitDate: Date
     }, ExtArgs["result"]["commit"]>
     composites: {}
   }
@@ -5422,8 +5422,8 @@ export namespace Prisma {
     readonly commitHash: FieldRef<"Commit", 'String'>
     readonly commitAuthorName: FieldRef<"Commit", 'String'>
     readonly commitAuthorAvatar: FieldRef<"Commit", 'String'>
-    readonly commitDate: FieldRef<"Commit", 'DateTime'>
     readonly summary: FieldRef<"Commit", 'String'>
+    readonly commitDate: FieldRef<"Commit", 'DateTime'>
   }
     
 
@@ -6915,9 +6915,9 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     profileUrl: 'profileUrl',
-    credits: 'credits',
     userName: 'userName',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    credits: 'credits'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -6927,9 +6927,9 @@ export namespace Prisma {
     id: 'id',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    projectName: 'projectName',
     githubUrl: 'githubUrl',
     deletedAt: 'deletedAt',
+    projectName: 'projectName',
     ownerId: 'ownerId'
   };
 
@@ -6956,8 +6956,8 @@ export namespace Prisma {
     commitHash: 'commitHash',
     commitAuthorName: 'commitAuthorName',
     commitAuthorAvatar: 'commitAuthorAvatar',
-    commitDate: 'commitDate',
-    summary: 'summary'
+    summary: 'summary',
+    commitDate: 'commitDate'
   };
 
   export type CommitScalarFieldEnum = (typeof CommitScalarFieldEnum)[keyof typeof CommitScalarFieldEnum]
@@ -7018,20 +7018,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -7042,6 +7028,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -7070,9 +7070,9 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     profileUrl?: StringNullableFilter<"User"> | string | null
-    credits?: IntFilter<"User"> | number
     userName?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    credits?: IntFilter<"User"> | number
     ownedProjects?: ProjectListRelationFilter
     collaborations?: UserToProjectListRelationFilter
   }
@@ -7082,9 +7082,9 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profileUrl?: SortOrderInput | SortOrder
-    credits?: SortOrder
     userName?: SortOrder
     createdAt?: SortOrder
+    credits?: SortOrder
     ownedProjects?: ProjectOrderByRelationAggregateInput
     collaborations?: UserToProjectOrderByRelationAggregateInput
   }
@@ -7097,9 +7097,9 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     profileUrl?: StringNullableFilter<"User"> | string | null
-    credits?: IntFilter<"User"> | number
     userName?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    credits?: IntFilter<"User"> | number
     ownedProjects?: ProjectListRelationFilter
     collaborations?: UserToProjectListRelationFilter
   }, "id" | "email">
@@ -7109,9 +7109,9 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profileUrl?: SortOrderInput | SortOrder
-    credits?: SortOrder
     userName?: SortOrder
     createdAt?: SortOrder
+    credits?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -7127,9 +7127,9 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     profileUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
-    credits?: IntWithAggregatesFilter<"User"> | number
     userName?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    credits?: IntWithAggregatesFilter<"User"> | number
   }
 
   export type ProjectWhereInput = {
@@ -7139,28 +7139,28 @@ export namespace Prisma {
     id?: StringFilter<"Project"> | string
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
-    projectName?: StringFilter<"Project"> | string
     githubUrl?: StringFilter<"Project"> | string
     deletedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
+    projectName?: StringFilter<"Project"> | string
     ownerId?: StringFilter<"Project"> | string
-    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
-    collaborators?: UserToProjectListRelationFilter
     commits?: CommitListRelationFilter
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     sourceCodeEmbedding?: SourceCodeEmbeddingListRelationFilter
+    collaborators?: UserToProjectListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    projectName?: SortOrder
     githubUrl?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    projectName?: SortOrder
     ownerId?: SortOrder
-    owner?: UserOrderByWithRelationInput
-    collaborators?: UserToProjectOrderByRelationAggregateInput
     commits?: CommitOrderByRelationAggregateInput
+    owner?: UserOrderByWithRelationInput
     sourceCodeEmbedding?: SourceCodeEmbeddingOrderByRelationAggregateInput
+    collaborators?: UserToProjectOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -7171,23 +7171,23 @@ export namespace Prisma {
     NOT?: ProjectWhereInput | ProjectWhereInput[]
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
-    projectName?: StringFilter<"Project"> | string
     githubUrl?: StringFilter<"Project"> | string
     deletedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
+    projectName?: StringFilter<"Project"> | string
     ownerId?: StringFilter<"Project"> | string
-    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
-    collaborators?: UserToProjectListRelationFilter
     commits?: CommitListRelationFilter
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     sourceCodeEmbedding?: SourceCodeEmbeddingListRelationFilter
+    collaborators?: UserToProjectListRelationFilter
   }, "id" | "ownerId_githubUrl">
 
   export type ProjectOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    projectName?: SortOrder
     githubUrl?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    projectName?: SortOrder
     ownerId?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
@@ -7201,9 +7201,9 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Project"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
-    projectName?: StringWithAggregatesFilter<"Project"> | string
     githubUrl?: StringWithAggregatesFilter<"Project"> | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+    projectName?: StringWithAggregatesFilter<"Project"> | string
     ownerId?: StringWithAggregatesFilter<"Project"> | string
   }
 
@@ -7216,8 +7216,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"UserToProject"> | Date | string
     userId?: StringFilter<"UserToProject"> | string
     projectId?: StringFilter<"UserToProject"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type UserToProjectOrderByWithRelationInput = {
@@ -7226,8 +7226,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     projectId?: SortOrder
-    user?: UserOrderByWithRelationInput
     project?: ProjectOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type UserToProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -7240,8 +7240,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"UserToProject"> | Date | string
     userId?: StringFilter<"UserToProject"> | string
     projectId?: StringFilter<"UserToProject"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId_projectId">
 
   export type UserToProjectOrderByWithAggregationInput = {
@@ -7278,8 +7278,8 @@ export namespace Prisma {
     commitHash?: StringFilter<"Commit"> | string
     commitAuthorName?: StringFilter<"Commit"> | string
     commitAuthorAvatar?: StringFilter<"Commit"> | string
-    commitDate?: DateTimeFilter<"Commit"> | Date | string
     summary?: StringFilter<"Commit"> | string
+    commitDate?: DateTimeFilter<"Commit"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
   }
 
@@ -7292,8 +7292,8 @@ export namespace Prisma {
     commitHash?: SortOrder
     commitAuthorName?: SortOrder
     commitAuthorAvatar?: SortOrder
-    commitDate?: SortOrder
     summary?: SortOrder
+    commitDate?: SortOrder
     project?: ProjectOrderByWithRelationInput
   }
 
@@ -7309,8 +7309,8 @@ export namespace Prisma {
     commitHash?: StringFilter<"Commit"> | string
     commitAuthorName?: StringFilter<"Commit"> | string
     commitAuthorAvatar?: StringFilter<"Commit"> | string
-    commitDate?: DateTimeFilter<"Commit"> | Date | string
     summary?: StringFilter<"Commit"> | string
+    commitDate?: DateTimeFilter<"Commit"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
   }, "id">
 
@@ -7323,8 +7323,8 @@ export namespace Prisma {
     commitHash?: SortOrder
     commitAuthorName?: SortOrder
     commitAuthorAvatar?: SortOrder
-    commitDate?: SortOrder
     summary?: SortOrder
+    commitDate?: SortOrder
     _count?: CommitCountOrderByAggregateInput
     _max?: CommitMaxOrderByAggregateInput
     _min?: CommitMinOrderByAggregateInput
@@ -7342,8 +7342,8 @@ export namespace Prisma {
     commitHash?: StringWithAggregatesFilter<"Commit"> | string
     commitAuthorName?: StringWithAggregatesFilter<"Commit"> | string
     commitAuthorAvatar?: StringWithAggregatesFilter<"Commit"> | string
-    commitDate?: DateTimeWithAggregatesFilter<"Commit"> | Date | string
     summary?: StringWithAggregatesFilter<"Commit"> | string
+    commitDate?: DateTimeWithAggregatesFilter<"Commit"> | Date | string
   }
 
   export type SourceCodeEmbeddingWhereInput = {
@@ -7406,9 +7406,9 @@ export namespace Prisma {
     email: string
     password: string
     profileUrl?: string | null
-    credits?: number
     userName: string
     createdAt?: Date | string
+    credits?: number
     ownedProjects?: ProjectCreateNestedManyWithoutOwnerInput
     collaborations?: UserToProjectCreateNestedManyWithoutUserInput
   }
@@ -7418,9 +7418,9 @@ export namespace Prisma {
     email: string
     password: string
     profileUrl?: string | null
-    credits?: number
     userName: string
     createdAt?: Date | string
+    credits?: number
     ownedProjects?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     collaborations?: UserToProjectUncheckedCreateNestedManyWithoutUserInput
   }
@@ -7430,9 +7430,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
     userName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
     ownedProjects?: ProjectUpdateManyWithoutOwnerNestedInput
     collaborations?: UserToProjectUpdateManyWithoutUserNestedInput
   }
@@ -7442,9 +7442,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
     userName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
     ownedProjects?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     collaborations?: UserToProjectUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -7454,9 +7454,9 @@ export namespace Prisma {
     email: string
     password: string
     profileUrl?: string | null
-    credits?: number
     userName: string
     createdAt?: Date | string
+    credits?: number
   }
 
   export type UserUpdateManyMutationInput = {
@@ -7464,9 +7464,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
     userName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -7474,70 +7474,70 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
     userName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProjectCreateInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
-    owner: UserCreateNestedOneWithoutOwnedProjectsInput
-    collaborators?: UserToProjectCreateNestedManyWithoutProjectInput
+    projectName: string
     commits?: CommitCreateNestedManyWithoutProjectInput
+    owner: UserCreateNestedOneWithoutOwnedProjectsInput
     sourceCodeEmbedding?: SourceCodeEmbeddingCreateNestedManyWithoutProjectInput
+    collaborators?: UserToProjectCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
     ownerId: string
-    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedCreateNestedManyWithoutProjectInput
+    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    owner?: UserUpdateOneRequiredWithoutOwnedProjectsNestedInput
-    collaborators?: UserToProjectUpdateManyWithoutProjectNestedInput
+    projectName?: StringFieldUpdateOperationsInput | string
     commits?: CommitUpdateManyWithoutProjectNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwnedProjectsNestedInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput
+    collaborators?: UserToProjectUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
-    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedUpdateManyWithoutProjectNestedInput
+    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
     ownerId: string
   }
 
@@ -7545,18 +7545,18 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProjectUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -7564,8 +7564,8 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutCollaborationsInput
     project: ProjectCreateNestedOneWithoutCollaboratorsInput
+    user: UserCreateNestedOneWithoutCollaborationsInput
   }
 
   export type UserToProjectUncheckedCreateInput = {
@@ -7580,8 +7580,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutCollaborationsNestedInput
     project?: ProjectUpdateOneRequiredWithoutCollaboratorsNestedInput
+    user?: UserUpdateOneRequiredWithoutCollaborationsNestedInput
   }
 
   export type UserToProjectUncheckedUpdateInput = {
@@ -7622,8 +7622,8 @@ export namespace Prisma {
     commitHash: string
     commitAuthorName: string
     commitAuthorAvatar: string
-    commitDate: Date | string
     summary: string
+    commitDate: Date | string
     project: ProjectCreateNestedOneWithoutCommitsInput
   }
 
@@ -7636,8 +7636,8 @@ export namespace Prisma {
     commitHash: string
     commitAuthorName: string
     commitAuthorAvatar: string
-    commitDate: Date | string
     summary: string
+    commitDate: Date | string
   }
 
   export type CommitUpdateInput = {
@@ -7648,8 +7648,8 @@ export namespace Prisma {
     commitHash?: StringFieldUpdateOperationsInput | string
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutCommitsNestedInput
   }
 
@@ -7662,8 +7662,8 @@ export namespace Prisma {
     commitHash?: StringFieldUpdateOperationsInput | string
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommitCreateManyInput = {
@@ -7675,8 +7675,8 @@ export namespace Prisma {
     commitHash: string
     commitAuthorName: string
     commitAuthorAvatar: string
-    commitDate: Date | string
     summary: string
+    commitDate: Date | string
   }
 
   export type CommitUpdateManyMutationInput = {
@@ -7687,8 +7687,8 @@ export namespace Prisma {
     commitHash?: StringFieldUpdateOperationsInput | string
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommitUncheckedUpdateManyInput = {
@@ -7700,8 +7700,8 @@ export namespace Prisma {
     commitHash?: StringFieldUpdateOperationsInput | string
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SourceCodeEmbeddingCreateInput = {
@@ -7789,17 +7789,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -7809,6 +7798,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type ProjectListRelationFilter = {
@@ -7841,9 +7841,9 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profileUrl?: SortOrder
-    credits?: SortOrder
     userName?: SortOrder
     createdAt?: SortOrder
+    credits?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -7855,9 +7855,9 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profileUrl?: SortOrder
-    credits?: SortOrder
     userName?: SortOrder
     createdAt?: SortOrder
+    credits?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -7865,9 +7865,9 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profileUrl?: SortOrder
-    credits?: SortOrder
     userName?: SortOrder
     createdAt?: SortOrder
+    credits?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -7910,6 +7910,20 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -7926,20 +7940,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -7951,15 +7951,15 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
   export type CommitListRelationFilter = {
     every?: CommitWhereInput
     some?: CommitWhereInput
     none?: CommitWhereInput
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type SourceCodeEmbeddingListRelationFilter = {
@@ -7985,9 +7985,9 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    projectName?: SortOrder
     githubUrl?: SortOrder
     deletedAt?: SortOrder
+    projectName?: SortOrder
     ownerId?: SortOrder
   }
 
@@ -7995,9 +7995,9 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    projectName?: SortOrder
     githubUrl?: SortOrder
     deletedAt?: SortOrder
+    projectName?: SortOrder
     ownerId?: SortOrder
   }
 
@@ -8005,9 +8005,9 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    projectName?: SortOrder
     githubUrl?: SortOrder
     deletedAt?: SortOrder
+    projectName?: SortOrder
     ownerId?: SortOrder
   }
 
@@ -8068,8 +8068,8 @@ export namespace Prisma {
     commitHash?: SortOrder
     commitAuthorName?: SortOrder
     commitAuthorAvatar?: SortOrder
-    commitDate?: SortOrder
     summary?: SortOrder
+    commitDate?: SortOrder
   }
 
   export type CommitMaxOrderByAggregateInput = {
@@ -8081,8 +8081,8 @@ export namespace Prisma {
     commitHash?: SortOrder
     commitAuthorName?: SortOrder
     commitAuthorAvatar?: SortOrder
-    commitDate?: SortOrder
     summary?: SortOrder
+    commitDate?: SortOrder
   }
 
   export type CommitMinOrderByAggregateInput = {
@@ -8094,8 +8094,8 @@ export namespace Prisma {
     commitHash?: SortOrder
     commitAuthorName?: SortOrder
     commitAuthorAvatar?: SortOrder
-    commitDate?: SortOrder
     summary?: SortOrder
+    commitDate?: SortOrder
   }
 
   export type SourceCodeEmbeddingCountOrderByAggregateInput = {
@@ -8158,16 +8158,16 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type ProjectUpdateManyWithoutOwnerNestedInput = {
@@ -8226,24 +8226,17 @@ export namespace Prisma {
     deleteMany?: UserToProjectScalarWhereInput | UserToProjectScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutOwnedProjectsInput = {
-    create?: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOwnedProjectsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserToProjectCreateNestedManyWithoutProjectInput = {
-    create?: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput> | UserToProjectCreateWithoutProjectInput[] | UserToProjectUncheckedCreateWithoutProjectInput[]
-    connectOrCreate?: UserToProjectCreateOrConnectWithoutProjectInput | UserToProjectCreateOrConnectWithoutProjectInput[]
-    createMany?: UserToProjectCreateManyProjectInputEnvelope
-    connect?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
-  }
-
   export type CommitCreateNestedManyWithoutProjectInput = {
     create?: XOR<CommitCreateWithoutProjectInput, CommitUncheckedCreateWithoutProjectInput> | CommitCreateWithoutProjectInput[] | CommitUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: CommitCreateOrConnectWithoutProjectInput | CommitCreateOrConnectWithoutProjectInput[]
     createMany?: CommitCreateManyProjectInputEnvelope
     connect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutOwnedProjectsInput = {
+    create?: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOwnedProjectsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type SourceCodeEmbeddingCreateNestedManyWithoutProjectInput = {
@@ -8253,7 +8246,7 @@ export namespace Prisma {
     connect?: SourceCodeEmbeddingWhereUniqueInput | SourceCodeEmbeddingWhereUniqueInput[]
   }
 
-  export type UserToProjectUncheckedCreateNestedManyWithoutProjectInput = {
+  export type UserToProjectCreateNestedManyWithoutProjectInput = {
     create?: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput> | UserToProjectCreateWithoutProjectInput[] | UserToProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserToProjectCreateOrConnectWithoutProjectInput | UserToProjectCreateOrConnectWithoutProjectInput[]
     createMany?: UserToProjectCreateManyProjectInputEnvelope
@@ -8274,30 +8267,15 @@ export namespace Prisma {
     connect?: SourceCodeEmbeddingWhereUniqueInput | SourceCodeEmbeddingWhereUniqueInput[]
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
-  export type UserUpdateOneRequiredWithoutOwnedProjectsNestedInput = {
-    create?: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOwnedProjectsInput
-    upsert?: UserUpsertWithoutOwnedProjectsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOwnedProjectsInput, UserUpdateWithoutOwnedProjectsInput>, UserUncheckedUpdateWithoutOwnedProjectsInput>
-  }
-
-  export type UserToProjectUpdateManyWithoutProjectNestedInput = {
+  export type UserToProjectUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput> | UserToProjectCreateWithoutProjectInput[] | UserToProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserToProjectCreateOrConnectWithoutProjectInput | UserToProjectCreateOrConnectWithoutProjectInput[]
-    upsert?: UserToProjectUpsertWithWhereUniqueWithoutProjectInput | UserToProjectUpsertWithWhereUniqueWithoutProjectInput[]
     createMany?: UserToProjectCreateManyProjectInputEnvelope
-    set?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
-    disconnect?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
-    delete?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
     connect?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
-    update?: UserToProjectUpdateWithWhereUniqueWithoutProjectInput | UserToProjectUpdateWithWhereUniqueWithoutProjectInput[]
-    updateMany?: UserToProjectUpdateManyWithWhereWithoutProjectInput | UserToProjectUpdateManyWithWhereWithoutProjectInput[]
-    deleteMany?: UserToProjectScalarWhereInput | UserToProjectScalarWhereInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type CommitUpdateManyWithoutProjectNestedInput = {
@@ -8314,6 +8292,14 @@ export namespace Prisma {
     deleteMany?: CommitScalarWhereInput | CommitScalarWhereInput[]
   }
 
+  export type UserUpdateOneRequiredWithoutOwnedProjectsNestedInput = {
+    create?: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOwnedProjectsInput
+    upsert?: UserUpsertWithoutOwnedProjectsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOwnedProjectsInput, UserUpdateWithoutOwnedProjectsInput>, UserUncheckedUpdateWithoutOwnedProjectsInput>
+  }
+
   export type SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput = {
     create?: XOR<SourceCodeEmbeddingCreateWithoutProjectInput, SourceCodeEmbeddingUncheckedCreateWithoutProjectInput> | SourceCodeEmbeddingCreateWithoutProjectInput[] | SourceCodeEmbeddingUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: SourceCodeEmbeddingCreateOrConnectWithoutProjectInput | SourceCodeEmbeddingCreateOrConnectWithoutProjectInput[]
@@ -8328,7 +8314,7 @@ export namespace Prisma {
     deleteMany?: SourceCodeEmbeddingScalarWhereInput | SourceCodeEmbeddingScalarWhereInput[]
   }
 
-  export type UserToProjectUncheckedUpdateManyWithoutProjectNestedInput = {
+  export type UserToProjectUpdateManyWithoutProjectNestedInput = {
     create?: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput> | UserToProjectCreateWithoutProjectInput[] | UserToProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserToProjectCreateOrConnectWithoutProjectInput | UserToProjectCreateOrConnectWithoutProjectInput[]
     upsert?: UserToProjectUpsertWithWhereUniqueWithoutProjectInput | UserToProjectUpsertWithWhereUniqueWithoutProjectInput[]
@@ -8370,10 +8356,18 @@ export namespace Prisma {
     deleteMany?: SourceCodeEmbeddingScalarWhereInput | SourceCodeEmbeddingScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutCollaborationsInput = {
-    create?: XOR<UserCreateWithoutCollaborationsInput, UserUncheckedCreateWithoutCollaborationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCollaborationsInput
-    connect?: UserWhereUniqueInput
+  export type UserToProjectUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput> | UserToProjectCreateWithoutProjectInput[] | UserToProjectUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: UserToProjectCreateOrConnectWithoutProjectInput | UserToProjectCreateOrConnectWithoutProjectInput[]
+    upsert?: UserToProjectUpsertWithWhereUniqueWithoutProjectInput | UserToProjectUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: UserToProjectCreateManyProjectInputEnvelope
+    set?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
+    disconnect?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
+    delete?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
+    connect?: UserToProjectWhereUniqueInput | UserToProjectWhereUniqueInput[]
+    update?: UserToProjectUpdateWithWhereUniqueWithoutProjectInput | UserToProjectUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: UserToProjectUpdateManyWithWhereWithoutProjectInput | UserToProjectUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: UserToProjectScalarWhereInput | UserToProjectScalarWhereInput[]
   }
 
   export type ProjectCreateNestedOneWithoutCollaboratorsInput = {
@@ -8382,12 +8376,10 @@ export namespace Prisma {
     connect?: ProjectWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutCollaborationsNestedInput = {
+  export type UserCreateNestedOneWithoutCollaborationsInput = {
     create?: XOR<UserCreateWithoutCollaborationsInput, UserUncheckedCreateWithoutCollaborationsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCollaborationsInput
-    upsert?: UserUpsertWithoutCollaborationsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCollaborationsInput, UserUpdateWithoutCollaborationsInput>, UserUncheckedUpdateWithoutCollaborationsInput>
   }
 
   export type ProjectUpdateOneRequiredWithoutCollaboratorsNestedInput = {
@@ -8396,6 +8388,14 @@ export namespace Prisma {
     upsert?: ProjectUpsertWithoutCollaboratorsInput
     connect?: ProjectWhereUniqueInput
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutCollaboratorsInput, ProjectUpdateWithoutCollaboratorsInput>, ProjectUncheckedUpdateWithoutCollaboratorsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutCollaborationsNestedInput = {
+    create?: XOR<UserCreateWithoutCollaborationsInput, UserUncheckedCreateWithoutCollaborationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCollaborationsInput
+    upsert?: UserUpsertWithoutCollaborationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCollaborationsInput, UserUpdateWithoutCollaborationsInput>, UserUncheckedUpdateWithoutCollaborationsInput>
   }
 
   export type ProjectCreateNestedOneWithoutCommitsInput = {
@@ -8454,17 +8454,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -8474,6 +8463,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -8521,6 +8521,20 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -8546,20 +8560,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -8591,24 +8591,24 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
-    collaborators?: UserToProjectCreateNestedManyWithoutProjectInput
+    projectName: string
     commits?: CommitCreateNestedManyWithoutProjectInput
     sourceCodeEmbedding?: SourceCodeEmbeddingCreateNestedManyWithoutProjectInput
+    collaborators?: UserToProjectCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutOwnerInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
-    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
+    projectName: string
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedCreateNestedManyWithoutProjectInput
+    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutOwnerInput = {
@@ -8668,9 +8668,9 @@ export namespace Prisma {
     id?: StringFilter<"Project"> | string
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
-    projectName?: StringFilter<"Project"> | string
     githubUrl?: StringFilter<"Project"> | string
     deletedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
+    projectName?: StringFilter<"Project"> | string
     ownerId?: StringFilter<"Project"> | string
   }
 
@@ -8701,57 +8701,6 @@ export namespace Prisma {
     projectId?: StringFilter<"UserToProject"> | string
   }
 
-  export type UserCreateWithoutOwnedProjectsInput = {
-    id?: string
-    email: string
-    password: string
-    profileUrl?: string | null
-    credits?: number
-    userName: string
-    createdAt?: Date | string
-    collaborations?: UserToProjectCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutOwnedProjectsInput = {
-    id?: string
-    email: string
-    password: string
-    profileUrl?: string | null
-    credits?: number
-    userName: string
-    createdAt?: Date | string
-    collaborations?: UserToProjectUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutOwnedProjectsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
-  }
-
-  export type UserToProjectCreateWithoutProjectInput = {
-    id?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutCollaborationsInput
-  }
-
-  export type UserToProjectUncheckedCreateWithoutProjectInput = {
-    id?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId: string
-  }
-
-  export type UserToProjectCreateOrConnectWithoutProjectInput = {
-    where: UserToProjectWhereUniqueInput
-    create: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput>
-  }
-
-  export type UserToProjectCreateManyProjectInputEnvelope = {
-    data: UserToProjectCreateManyProjectInput | UserToProjectCreateManyProjectInput[]
-    skipDuplicates?: boolean
-  }
-
   export type CommitCreateWithoutProjectInput = {
     id?: string
     createdAt?: Date | string
@@ -8760,8 +8709,8 @@ export namespace Prisma {
     commitHash: string
     commitAuthorName: string
     commitAuthorAvatar: string
-    commitDate: Date | string
     summary: string
+    commitDate: Date | string
   }
 
   export type CommitUncheckedCreateWithoutProjectInput = {
@@ -8772,8 +8721,8 @@ export namespace Prisma {
     commitHash: string
     commitAuthorName: string
     commitAuthorAvatar: string
-    commitDate: Date | string
     summary: string
+    commitDate: Date | string
   }
 
   export type CommitCreateOrConnectWithoutProjectInput = {
@@ -8784,6 +8733,33 @@ export namespace Prisma {
   export type CommitCreateManyProjectInputEnvelope = {
     data: CommitCreateManyProjectInput | CommitCreateManyProjectInput[]
     skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutOwnedProjectsInput = {
+    id?: string
+    email: string
+    password: string
+    profileUrl?: string | null
+    userName: string
+    createdAt?: Date | string
+    credits?: number
+    collaborations?: UserToProjectCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutOwnedProjectsInput = {
+    id?: string
+    email: string
+    password: string
+    profileUrl?: string | null
+    userName: string
+    createdAt?: Date | string
+    credits?: number
+    collaborations?: UserToProjectUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutOwnedProjectsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
   }
 
   export type SourceCodeEmbeddingCreateWithoutProjectInput = {
@@ -8810,53 +8786,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutOwnedProjectsInput = {
-    update: XOR<UserUpdateWithoutOwnedProjectsInput, UserUncheckedUpdateWithoutOwnedProjectsInput>
-    create: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
-    where?: UserWhereInput
+  export type UserToProjectCreateWithoutProjectInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCollaborationsInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutOwnedProjectsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutOwnedProjectsInput, UserUncheckedUpdateWithoutOwnedProjectsInput>
+  export type UserToProjectUncheckedCreateWithoutProjectInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
   }
 
-  export type UserUpdateWithoutOwnedProjectsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
-    userName?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    collaborations?: UserToProjectUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutOwnedProjectsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
-    userName?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    collaborations?: UserToProjectUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserToProjectUpsertWithWhereUniqueWithoutProjectInput = {
+  export type UserToProjectCreateOrConnectWithoutProjectInput = {
     where: UserToProjectWhereUniqueInput
-    update: XOR<UserToProjectUpdateWithoutProjectInput, UserToProjectUncheckedUpdateWithoutProjectInput>
     create: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput>
   }
 
-  export type UserToProjectUpdateWithWhereUniqueWithoutProjectInput = {
-    where: UserToProjectWhereUniqueInput
-    data: XOR<UserToProjectUpdateWithoutProjectInput, UserToProjectUncheckedUpdateWithoutProjectInput>
-  }
-
-  export type UserToProjectUpdateManyWithWhereWithoutProjectInput = {
-    where: UserToProjectScalarWhereInput
-    data: XOR<UserToProjectUpdateManyMutationInput, UserToProjectUncheckedUpdateManyWithoutProjectInput>
+  export type UserToProjectCreateManyProjectInputEnvelope = {
+    data: UserToProjectCreateManyProjectInput | UserToProjectCreateManyProjectInput[]
+    skipDuplicates?: boolean
   }
 
   export type CommitUpsertWithWhereUniqueWithoutProjectInput = {
@@ -8887,8 +8838,41 @@ export namespace Prisma {
     commitHash?: StringFilter<"Commit"> | string
     commitAuthorName?: StringFilter<"Commit"> | string
     commitAuthorAvatar?: StringFilter<"Commit"> | string
-    commitDate?: DateTimeFilter<"Commit"> | Date | string
     summary?: StringFilter<"Commit"> | string
+    commitDate?: DateTimeFilter<"Commit"> | Date | string
+  }
+
+  export type UserUpsertWithoutOwnedProjectsInput = {
+    update: XOR<UserUpdateWithoutOwnedProjectsInput, UserUncheckedUpdateWithoutOwnedProjectsInput>
+    create: XOR<UserCreateWithoutOwnedProjectsInput, UserUncheckedCreateWithoutOwnedProjectsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutOwnedProjectsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutOwnedProjectsInput, UserUncheckedUpdateWithoutOwnedProjectsInput>
+  }
+
+  export type UserUpdateWithoutOwnedProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
+    collaborations?: UserToProjectUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutOwnedProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
+    collaborations?: UserToProjectUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SourceCodeEmbeddingUpsertWithWhereUniqueWithoutProjectInput = {
@@ -8918,42 +8902,31 @@ export namespace Prisma {
     projectId?: StringFilter<"SourceCodeEmbedding"> | string
   }
 
-  export type UserCreateWithoutCollaborationsInput = {
-    id?: string
-    email: string
-    password: string
-    profileUrl?: string | null
-    credits?: number
-    userName: string
-    createdAt?: Date | string
-    ownedProjects?: ProjectCreateNestedManyWithoutOwnerInput
+  export type UserToProjectUpsertWithWhereUniqueWithoutProjectInput = {
+    where: UserToProjectWhereUniqueInput
+    update: XOR<UserToProjectUpdateWithoutProjectInput, UserToProjectUncheckedUpdateWithoutProjectInput>
+    create: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput>
   }
 
-  export type UserUncheckedCreateWithoutCollaborationsInput = {
-    id?: string
-    email: string
-    password: string
-    profileUrl?: string | null
-    credits?: number
-    userName: string
-    createdAt?: Date | string
-    ownedProjects?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+  export type UserToProjectUpdateWithWhereUniqueWithoutProjectInput = {
+    where: UserToProjectWhereUniqueInput
+    data: XOR<UserToProjectUpdateWithoutProjectInput, UserToProjectUncheckedUpdateWithoutProjectInput>
   }
 
-  export type UserCreateOrConnectWithoutCollaborationsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutCollaborationsInput, UserUncheckedCreateWithoutCollaborationsInput>
+  export type UserToProjectUpdateManyWithWhereWithoutProjectInput = {
+    where: UserToProjectScalarWhereInput
+    data: XOR<UserToProjectUpdateManyMutationInput, UserToProjectUncheckedUpdateManyWithoutProjectInput>
   }
 
   export type ProjectCreateWithoutCollaboratorsInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
-    owner: UserCreateNestedOneWithoutOwnedProjectsInput
+    projectName: string
     commits?: CommitCreateNestedManyWithoutProjectInput
+    owner: UserCreateNestedOneWithoutOwnedProjectsInput
     sourceCodeEmbedding?: SourceCodeEmbeddingCreateNestedManyWithoutProjectInput
   }
 
@@ -8961,9 +8934,9 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
     ownerId: string
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedCreateNestedManyWithoutProjectInput
@@ -8972,6 +8945,68 @@ export namespace Prisma {
   export type ProjectCreateOrConnectWithoutCollaboratorsInput = {
     where: ProjectWhereUniqueInput
     create: XOR<ProjectCreateWithoutCollaboratorsInput, ProjectUncheckedCreateWithoutCollaboratorsInput>
+  }
+
+  export type UserCreateWithoutCollaborationsInput = {
+    id?: string
+    email: string
+    password: string
+    profileUrl?: string | null
+    userName: string
+    createdAt?: Date | string
+    credits?: number
+    ownedProjects?: ProjectCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserUncheckedCreateWithoutCollaborationsInput = {
+    id?: string
+    email: string
+    password: string
+    profileUrl?: string | null
+    userName: string
+    createdAt?: Date | string
+    credits?: number
+    ownedProjects?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserCreateOrConnectWithoutCollaborationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCollaborationsInput, UserUncheckedCreateWithoutCollaborationsInput>
+  }
+
+  export type ProjectUpsertWithoutCollaboratorsInput = {
+    update: XOR<ProjectUpdateWithoutCollaboratorsInput, ProjectUncheckedUpdateWithoutCollaboratorsInput>
+    create: XOR<ProjectCreateWithoutCollaboratorsInput, ProjectUncheckedCreateWithoutCollaboratorsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutCollaboratorsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutCollaboratorsInput, ProjectUncheckedUpdateWithoutCollaboratorsInput>
+  }
+
+  export type ProjectUpdateWithoutCollaboratorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    githubUrl?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
+    commits?: CommitUpdateManyWithoutProjectNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwnedProjectsNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutCollaboratorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    githubUrl?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutCollaborationsInput = {
@@ -8990,9 +9025,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
     userName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
     ownedProjects?: ProjectUpdateManyWithoutOwnerNestedInput
   }
 
@@ -9001,69 +9036,34 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    credits?: IntFieldUpdateOperationsInput | number
     userName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    credits?: IntFieldUpdateOperationsInput | number
     ownedProjects?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
-  }
-
-  export type ProjectUpsertWithoutCollaboratorsInput = {
-    update: XOR<ProjectUpdateWithoutCollaboratorsInput, ProjectUncheckedUpdateWithoutCollaboratorsInput>
-    create: XOR<ProjectCreateWithoutCollaboratorsInput, ProjectUncheckedCreateWithoutCollaboratorsInput>
-    where?: ProjectWhereInput
-  }
-
-  export type ProjectUpdateToOneWithWhereWithoutCollaboratorsInput = {
-    where?: ProjectWhereInput
-    data: XOR<ProjectUpdateWithoutCollaboratorsInput, ProjectUncheckedUpdateWithoutCollaboratorsInput>
-  }
-
-  export type ProjectUpdateWithoutCollaboratorsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
-    githubUrl?: StringFieldUpdateOperationsInput | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    owner?: UserUpdateOneRequiredWithoutOwnedProjectsNestedInput
-    commits?: CommitUpdateManyWithoutProjectNestedInput
-    sourceCodeEmbedding?: SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput
-  }
-
-  export type ProjectUncheckedUpdateWithoutCollaboratorsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
-    githubUrl?: StringFieldUpdateOperationsInput | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    ownerId?: StringFieldUpdateOperationsInput | string
-    commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
-    sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateWithoutCommitsInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
     owner: UserCreateNestedOneWithoutOwnedProjectsInput
-    collaborators?: UserToProjectCreateNestedManyWithoutProjectInput
     sourceCodeEmbedding?: SourceCodeEmbeddingCreateNestedManyWithoutProjectInput
+    collaborators?: UserToProjectCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutCommitsInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
     ownerId: string
-    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedCreateNestedManyWithoutProjectInput
+    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutCommitsInput = {
@@ -9086,48 +9086,48 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
     owner?: UserUpdateOneRequiredWithoutOwnedProjectsNestedInput
-    collaborators?: UserToProjectUpdateManyWithoutProjectNestedInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput
+    collaborators?: UserToProjectUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutCommitsInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
-    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedUpdateManyWithoutProjectNestedInput
+    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateWithoutSourceCodeEmbeddingInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
+    commits?: CommitCreateNestedManyWithoutProjectInput
     owner: UserCreateNestedOneWithoutOwnedProjectsInput
     collaborators?: UserToProjectCreateNestedManyWithoutProjectInput
-    commits?: CommitCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutSourceCodeEmbeddingInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
     ownerId: string
-    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
+    collaborators?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutSourceCodeEmbeddingInput = {
@@ -9150,33 +9150,33 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
+    commits?: CommitUpdateManyWithoutProjectNestedInput
     owner?: UserUpdateOneRequiredWithoutOwnedProjectsNestedInput
     collaborators?: UserToProjectUpdateManyWithoutProjectNestedInput
-    commits?: CommitUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutSourceCodeEmbeddingInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
-    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
+    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyOwnerInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    projectName: string
     githubUrl: string
     deletedAt?: Date | string | null
+    projectName: string
   }
 
   export type UserToProjectCreateManyUserInput = {
@@ -9190,33 +9190,33 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    collaborators?: UserToProjectUpdateManyWithoutProjectNestedInput
+    projectName?: StringFieldUpdateOperationsInput | string
     commits?: CommitUpdateManyWithoutProjectNestedInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput
+    collaborators?: UserToProjectUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
+    projectName?: StringFieldUpdateOperationsInput | string
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
     sourceCodeEmbedding?: SourceCodeEmbeddingUncheckedUpdateManyWithoutProjectNestedInput
+    collaborators?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectName?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    projectName?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserToProjectUpdateWithoutUserInput = {
@@ -9240,13 +9240,6 @@ export namespace Prisma {
     projectId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type UserToProjectCreateManyProjectInput = {
-    id?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId: string
-  }
-
   export type CommitCreateManyProjectInput = {
     id?: string
     createdAt?: Date | string
@@ -9255,8 +9248,8 @@ export namespace Prisma {
     commitHash: string
     commitAuthorName: string
     commitAuthorAvatar: string
-    commitDate: Date | string
     summary: string
+    commitDate: Date | string
   }
 
   export type SourceCodeEmbeddingCreateManyProjectInput = {
@@ -9266,25 +9259,11 @@ export namespace Prisma {
     summary: string
   }
 
-  export type UserToProjectUpdateWithoutProjectInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutCollaborationsNestedInput
-  }
-
-  export type UserToProjectUncheckedUpdateWithoutProjectInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserToProjectUncheckedUpdateManyWithoutProjectInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
+  export type UserToProjectCreateManyProjectInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
   }
 
   export type CommitUpdateWithoutProjectInput = {
@@ -9295,8 +9274,8 @@ export namespace Prisma {
     commitHash?: StringFieldUpdateOperationsInput | string
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommitUncheckedUpdateWithoutProjectInput = {
@@ -9307,8 +9286,8 @@ export namespace Prisma {
     commitHash?: StringFieldUpdateOperationsInput | string
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommitUncheckedUpdateManyWithoutProjectInput = {
@@ -9319,8 +9298,8 @@ export namespace Prisma {
     commitHash?: StringFieldUpdateOperationsInput | string
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SourceCodeEmbeddingUpdateWithoutProjectInput = {
@@ -9342,6 +9321,27 @@ export namespace Prisma {
     sourceCode?: StringFieldUpdateOperationsInput | string
     fileName?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserToProjectUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCollaborationsNestedInput
+  }
+
+  export type UserToProjectUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserToProjectUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
 

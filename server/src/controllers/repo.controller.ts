@@ -1,6 +1,6 @@
 import { RepoService } from "../services/repo.service";
 import { Request, Response, NextFunction } from "express";
-import { commitSchemaType } from "../schema/commit.schema";
+import { loadRepoSchemaType } from "../schema/repo.schema";
 import { UnauthorizedError } from "../utils/error.utils";
 import { StatusCodes } from "http-status-codes";
 import { logger } from "../config/logger";
@@ -45,25 +45,23 @@ export class RepoController {
         throw new UnauthorizedError("User not authenticated");
       }
 
-      const projectData = req.body as commitSchemaType;
+      const projectData = req.body as loadRepoSchemaType;
 
-      if (!projectData?.projectId?.trim()) {
-        logger.error("Invalid project ID provided");
-        throw new BadRequestError("Valid project ID is required");
+      if (!projectData?.projectId?.trim() || !projectData?.branchName.trim()) {
+        logger.error("Invalid project ID or branch name provided");
+        throw new BadRequestError("Valid project ID or branch name is required");
       }
 
       logger.info(`Starting repo load process for project: ${projectData.projectId}`);
 
-      const result = await this.repoService.loadGitRepo(projectData.projectId);
+       await this.repoService.loadGitRepo(projectData.projectId, projectData?.branchName);
 
       logger.info(`Repo load completed successfully for project: ${projectData.projectId}`);
 
       res.status(StatusCodes.CREATED).json({
         success: true,
-        data: result,
         message: "Repository loaded and processed successfully",
-        processedCount: result.length
-      } as LoadRepoResponse);
+      });
     } catch (error) {
       logger.error("Error in loadRepoToQuery");
       next(error);

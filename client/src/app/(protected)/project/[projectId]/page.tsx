@@ -10,33 +10,46 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Switch } from "@/components/ui/switch" 
-import { GitBranch, Search, RefreshCcw, Github, Calendar, Hash, FileText, Download, BrainCircuit } from "lucide-react"
+import { GitBranch, Search, RefreshCcw, Github, Calendar, Hash, FileText,  BrainCircuit, Loader2Icon } from "lucide-react"
 import { format } from "date-fns"
+import { useLoadGitHubRepoMutation } from "@/store/features/api"
+import axios from "axios"
 
 const Project = ({ params }: { params: Promise<{ projectId: string }> }) => {
   const resolvedParams = React.use(params)
-  const { projectId } = resolvedParams
-  const [showQueryInput, setShowQueryInput] = useState(false)
-  const [queryText, setQueryText] = useState("")
+  const { projectId } = resolvedParams;
+  const [showQueryInput, setShowQueryInput] = useState<boolean>(false)
+  const [queryText, setQueryText] = useState<string>("")
+  const [branchName, setBranchName] = useState<string>("")
+  const  [loadGithubRepo, {isLoading : repoLoading}] = useLoadGitHubRepoMutation();
 
-  const { data, isLoading, isError, refetch } = useFetchAllCommitsQuery({ projectId: projectId })
+  const { data, isLoading, isError } = useFetchAllCommitsQuery({ projectId: projectId })
 
   const handleLoadRepo = () => {
-    refetch()
-  }
-
-  const handlePullLatestCommits = () => {
-
-    console.log("Pulling latest commits...")
+    // to load recent commits
   }
 
   const handleQueryRepo = () => {
-    
     console.log("Querying repo with:", queryText)
   }
 
   const formatCommitHash = (hash: string) => {
     return hash.substring(0, 7)
+  }
+
+  const handleSwitch = async () => {
+    if(!branchName.trim()) return;
+    try {
+      await loadGithubRepo({projectId,branchName}).unwrap()
+    } catch (error) {
+      if(axios.isAxiosError(error)){
+        if(error.response){
+         console.error(error.response)
+        }
+      }
+    }finally{
+      setShowQueryInput(prev => !prev);
+    }
   }
 
   return (
@@ -56,18 +69,27 @@ const Project = ({ params }: { params: Promise<{ projectId: string }> }) => {
           </CardHeader>
           <CardContent>
             <div className="flex flex-col space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="">
                 <div className="flex items-center space-x-2">
-                  <Switch id="query-mode" checked={showQueryInput} onCheckedChange={setShowQueryInput} />
+
+                  <div className="flex items-center gap-5">
+                    <Input
+                      placeholder="Please Enter the branch name"
+                      className="pl-3 w-[250px]"
+                      value={branchName}
+                      onChange={(e) => setBranchName((e.target.value).toLocaleLowerCase())}
+                    />
+                  <Switch id="query-mode" className="cursor-pointer" checked={showQueryInput} onCheckedChange={handleSwitch} />
+                  </div>
+
                   <label htmlFor="query-mode" className="text-sm font-medium cursor-pointer">
                     Enable AI query on repository
                   </label>
                 </div>
-                <Button onClick={handlePullLatestCommits} variant="outline" className="gap-2">
-                  <Download className="h-4 w-4" />
-                  Pull Latest Commits
-                </Button>
+     
               </div>
+               
+             {repoLoading && <Loader2Icon className="animate-spin"/>}
 
               {showQueryInput && (
                 <div className="flex gap-3 pt-2">
@@ -106,7 +128,7 @@ const Project = ({ params }: { params: Promise<{ projectId: string }> }) => {
             <div className="flex items-center gap-3">
               <Button onClick={handleLoadRepo} variant="outline" size="sm" className="gap-2">
                 <RefreshCcw className="h-3.5 w-3.5" />
-                Load Repo
+                Load Recent Commits
               </Button>
               <Badge variant="outline" className="text-sm">
                 {data?.length || 0} commits
