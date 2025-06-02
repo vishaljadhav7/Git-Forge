@@ -6,7 +6,7 @@ export interface IUserToProject{
    updatedAt : Date;
    userId : string;
    projectId : string;
-}
+}   
 
 export interface ICreateProjectData {
   projectName : string;
@@ -21,4 +21,5 @@ export interface IProject extends ICreateProjectData {
   deletedAt? : Date | null;
   collaborators? : IUserToProject[]
   commits? : ICommit[]
+  isRepoLoaded : Boolean;
 }

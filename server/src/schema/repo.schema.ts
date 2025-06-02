@@ -10,4 +10,13 @@ export const loadRepoSchema = z.object({
     branchName : z.string({message : "branch name required!"})
 })
 
-export type loadRepoSchemaType = z.infer<typeof loadRepoSchema>
+export const createQuestionSchema  = z.object({
+  question : z.string({message : "Question is required to create question!"}),
+  answer : z.string({message : "Answer is required to create question!"}),
+  projectId : z.string({message : "projectId is required to create question!"}).uuid(), 
+  fileReferences : z.any().optional()
+})
+
+export type createQuestionSchemaType = z.infer<typeof createQuestionSchema>;
+export type loadRepoSchemaType = z.infer<typeof loadRepoSchema>;
+export type queryParamsSchemaType = z.infer<typeof queryParamsSchema>;

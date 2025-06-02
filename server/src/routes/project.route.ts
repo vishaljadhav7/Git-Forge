@@ -15,7 +15,7 @@ const projectController = new  ProjectController(projectService)
 
 projectRouter.post("/project", validateRequestBody(createProjectSchema), authMiddleware, projectController.generateNewProject);
 
-projectRouter.get("/project" ,authMiddleware, projectController.retrieveAllSavedProjects, projectController.retrieveAllSavedProjects);
+projectRouter.get("/project" ,authMiddleware, projectController.retrieveAllSavedProjects);
 
 
 

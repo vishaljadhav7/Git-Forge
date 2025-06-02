@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { createProjectSchema } from '../schema/project.schema';
 import { ProjectService } from '../services/project.service';
 import { Request, Response, NextFunction } from 'express';
-import { BadRequestError, UnauthorizedError } from '../utils/error.utils';
+import {  UnauthorizedError } from '../utils/error.utils';
 
 export class ProjectController {
   private projectService: ProjectService;
@@ -45,8 +45,6 @@ export class ProjectController {
       
       const allProjects = await this.projectService.retrieveProjects(req.user.userId);
       
-   
-
       res.status(StatusCodes.OK).json({
         success: true,
         message: "Projects retrieved successfully",

@@ -1,6 +1,6 @@
 import { aiModel } from "./gemini.utils";
 import axios from "axios";
-import { ICommitsWithSummary, ICommitCreateData } from "../models/commit.model";
+import { ICommitsWithSummary } from "../models/commit.model";
 import {
   InternalServerError,
   BadRequestError,

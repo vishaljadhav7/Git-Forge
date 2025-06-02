@@ -3,12 +3,14 @@ import { aiModel } from "./gemini.utils";
 import { genAI } from "./gemini.utils";
 import { logger } from "../config/logger";
 
+
+
 export interface FileSummaries {
   source: string;
   summary: string;
 }
 
-// Simple prompt for single file processing
+// prompt for single file processing
 const promptForSingleFileSummary = (file: { source: string; pageContent: string }) => {
   return `You are a senior software developer. Analyze this file and provide a technical summary.
 
@@ -23,7 +25,7 @@ Provide a concise technical summary (50-100 words) explaining:
 Return only the summary text, no additional formatting.`;
 };
 
-// Generate summary for a single file
+// Generate summary for file
 const generateSummaryForFile = async (file: { source: string; pageContent: string }): Promise<string> => {
   const maxRetries = 3;
   let lastError: any;
@@ -98,7 +100,7 @@ const generateSummaryForFile = async (file: { source: string; pageContent: strin
   return `Error generating summary for ${file.source}: ${lastError?.message || 'Unknown error'}`;
 };
 
-// Generate embedding for a single file
+// Generate embedding for file
 export const generateEmbeddingForFile = async (fileSummary: FileSummaries): Promise<any> => {
   const maxRetries = 3;
   let lastError: any;
@@ -154,7 +156,7 @@ export const generateEmbeddingForFile = async (fileSummary: FileSummaries): Prom
   return null; // Skip this file
 };
 
-// Main function - optimized for one-by-one processing
+// Main function - processing files one at a time
 export const repoSummaryAndEmbeddings = async (url: string, branchName : string) => {
   try {
     logger.info(`Starting repository analysis for: ${url}`);
@@ -258,21 +260,3 @@ export const repoSummaryAndEmbeddings = async (url: string, branchName : string)
   }
 };
 
-// Helper function to process a single file (useful for testing)
-export const processSingleFile = async (file: { source: string; pageContent: string }) => {
-  try {
-    const summary = await generateSummaryForFile(file);
-    const fileSummary: FileSummaries = { source: file.source, summary };
-    const embedding = await generateEmbeddingForFile(fileSummary);
-
-    return {
-      fileName: file.source,
-      sourceCode: file.pageContent,
-      summary: summary,
-      summaryEmbedding: embedding?.embedding || null
-    };
-  } catch (error: any) {
-    logger.error(`Error processing single file ${file.source}: Error : ${error.message}`);
-    throw error;
-  }
-};

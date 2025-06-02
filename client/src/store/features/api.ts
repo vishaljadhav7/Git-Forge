@@ -1,25 +1,24 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IProject, ICreateProjectData, ICommit} from "../types";
 
+
 export const api = createApi({
     reducerPath : "api",
     baseQuery : fetchBaseQuery({
         baseUrl : "http://localhost:4000/api",
         credentials : "include",
     }),
-    
-    tagTypes: ["Projects", "Commits"],
-
+    tagTypes: ["Projects", "Commits", "Questions"],
     endpoints : (build) => ({
         
         fetchAllProjects : build.query<IProject[], void>({
             query : () => `/project`,
             providesTags : ["Projects"],
-             transformResponse : (data : {data : IProject[]}) => data.data
+            transformResponse : (data : {data : IProject[]}) => data.data
         }),
 
         createProject : build.mutation<IProject, {project : ICreateProjectData}>({
-            query : ({project}) => ({
+            query : ({project}) => ({ 
                 url : "/project",
                 method : "POST",
                 body : project,
@@ -34,15 +33,30 @@ export const api = createApi({
                 url : "/commit-summary",
                 body : {projectId}
             }),
-            // invalidatesTags : ["Commits"],
-             transformResponse : (data : {data :  ICommit[]}) => data.data
+            transformResponse : (data : {data :  ICommit[]}) => data.data,
+            
+            invalidatesTags : ["Commits"]
         }),
 
         fetchAllCommits : build.query<ICommit[], {projectId : string}>({
             query : ({projectId}) => ({
                 url : `/commit-summary/${projectId}`,
             }),
-            transformResponse : (data : {data :  ICommit[]}) => data.data
+            transformResponse : (data : {data :  ICommit[]}) => data.data,
+       
+            providesTags : (result, error, {projectId}) => [
+                {type : 'Commits' as const, id : projectId}
+            ]
+        }),
+
+        updateCommits : build.mutation({
+            query : ({projectId}) => ({
+                method : "PATCH",
+                url : "/commit-summary",
+                body : {projectId}
+            }),
+   
+            invalidatesTags : ["Commits"]
         }),
 
         loadGitHubRepo : build.mutation({
@@ -50,10 +64,27 @@ export const api = createApi({
                 method : "POST",
                 url : "/repo/load",
                 body : {projectId, branchName}
-            })
+            }),
+            invalidatesTags : ["Commits"]
+        }),
+
+        saveQuestion : build.mutation({
+            query : (questionDetails) => ({
+              method : "POST",
+              url : "/repo/query-save",
+              body : questionDetails
+            }),
+            invalidatesTags : ["Questions"]
         })
     })
 })
 
-
-export const {useCreateProjectMutation, useFetchAllProjectsQuery, useGenerateCommitsMutation, useFetchAllCommitsQuery, useLoadGitHubRepoMutation}  = api;
+export const {
+    useCreateProjectMutation, 
+    useFetchAllProjectsQuery, 
+    useGenerateCommitsMutation, 
+    useFetchAllCommitsQuery, 
+    useLoadGitHubRepoMutation, 
+    useUpdateCommitsMutation,
+    useSaveQuestionMutation
+} = api;

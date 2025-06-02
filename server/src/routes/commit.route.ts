@@ -16,6 +16,8 @@ const commitController = new CommitController(commitService);
 
 commitRouter.post("/commit-summary", authMiddleware, validateRequestBody(commitSchema), commitController.summarizeAndSaveCommits);
 
-commitRouter.get("/commit-summary/:projectId", authMiddleware,  commitController.getSummarisedCommits);
+commitRouter.get("/commit-summary/:projectId", authMiddleware, commitController.getSummarisedCommits);
+
+commitRouter.patch("/commit-summary", authMiddleware,validateRequestBody(commitSchema), commitController.updateCommits)
 
 export {commitRouter};

@@ -5,3 +5,5 @@ const AI_MODEL = 'gemini-1.5-flash';
 export const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY!);
 
 export const aiModel = genAI.getGenerativeModel({ model: AI_MODEL });
+
+export const model = genAI.getGenerativeModel({ model: "text-embedding-004"});

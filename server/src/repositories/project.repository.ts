@@ -1,7 +1,7 @@
 import { prisma } from "../utils/client.utils";
 import { ICreateProjectData, IProject } from "../models/project.model";
 import { logger } from "../config/logger";
-import { InternalServerError } from "../utils/error.utils";
+import { BadRequestError, InternalServerError } from "../utils/error.utils";
 
 export class ProjectRepository {
   async createProject(projectData: ICreateProjectData, userId: string): Promise<IProject> {
@@ -31,7 +31,7 @@ export class ProjectRepository {
     }
   }
 
-  async findProjectById(projectId: string): Promise<IProject | null> {
+  async findProjectById(projectId: string, userId: string): Promise<IProject | null> {
     if (!projectId?.trim()) {
       throw new Error("Project ID is required");
     }
@@ -41,7 +41,8 @@ export class ProjectRepository {
       
       return await prisma.project.findUnique({
         where: {
-          id: projectId
+          id: projectId,
+          ownerId : userId
         }
       });
     } catch (error) {
@@ -69,5 +70,27 @@ export class ProjectRepository {
       logger.error(`Failed to find projects for user: ${errorMessage}`);
       throw new InternalServerError(`Failed to find projects: ${errorMessage}`);
     }
+  }
+
+  async updateProjectById(projectId: string, userId: string) {
+    try {
+      if(!projectId || !userId){
+        throw new BadRequestError("userId or projectId required!")
+      }
+       await prisma.project.update({
+        data : {
+          isRepoLoaded : true
+        },
+        where : {
+          id : projectId,
+          ownerId : userId
+        }
+       })   
+    } catch (error) {
+      if(error instanceof BadRequestError){
+        throw error;
+      }
+      throw new InternalServerError("Could not update the project!")
+    } 
   }
 }

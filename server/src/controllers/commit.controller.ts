@@ -3,7 +3,7 @@ import { commitSchemaType } from '../schema/commit.schema';
 import { StatusCodes } from 'http-status-codes';
 import { CommitService } from '../services/commit.service';
 import { logger } from '../config/logger';
-import { BadRequestError } from '../utils/error.utils';
+import { BadRequestError, UnauthorizedError } from '../utils/error.utils';
 
 
 export class CommitController {
@@ -22,12 +22,17 @@ export class CommitController {
       logger.info('Processing request to summarize and save commits');
       
       const { projectId } = req.body as commitSchemaType;
+      const userId = req.user?.userId;
+      
+      if(!userId) {
+        throw new UnauthorizedError("Unauthorized access!")
+      }
       
       if (!projectId) {
         throw new BadRequestError('Project ID is required');
       }
       
-      const savedAndSummarisedCommits = await this.commitService.insertCommits(projectId);
+      const savedAndSummarisedCommits = await this.commitService.insertCommits(projectId, userId);
       
       logger.info(`Successfully processed ${savedAndSummarisedCommits.length} commits for project ${projectId}`);
       
@@ -47,13 +52,18 @@ export class CommitController {
     next: NextFunction
   ): Promise<void> => {
     try {
+      const userId = req.user?.userId;
       const { projectId } = req.params;
       
+      if(!userId) {
+        throw new UnauthorizedError("Unauthorized access!")
+      }
+
       if (!projectId) {
         throw new BadRequestError('Project ID is required');
       }
       
-      const allCommits = await this.commitService.findCommits(projectId as string);
+      const allCommits = await this.commitService.findCommits(projectId as string, userId );
       
       res.status(StatusCodes.OK).json({
         success: true,
@@ -64,4 +74,35 @@ export class CommitController {
       next(error); 
     }
   };
+
+  updateCommits = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+     try {
+      logger.info('Processing request to update and save commits');
+      
+      const { projectId } = req.body as commitSchemaType;
+      const userId = req.user?.userId;
+      
+      if(!userId) {
+        throw new UnauthorizedError("Unauthorized access!")
+      }
+      
+      if (!projectId) {
+        throw new BadRequestError('Project ID is required');
+      }
+      
+      await this.commitService.pullLatestCommits(projectId, userId);
+
+        res.status(StatusCodes.CREATED).json({
+        success: true,
+        message: "Commits successfully processed and summarized"
+      });
+
+     } catch (error) {
+       next(error)
+     }
+  }
 }
