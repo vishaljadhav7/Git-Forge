@@ -141,6 +141,16 @@ export class RepoService {
     }
   }
 
+  async getQuestions( userId : string){
+    if( !userId){
+      throw new BadRequestError("project or user ID is required!");
+    }
+
+    const questions = await this.repoRepository.getAllQuestions(userId);
+
+    return questions;
+  }
+
   private buildContextFromFiles(files: QueryResult[]): string {
     let context = "";
     for (const doc of files) {

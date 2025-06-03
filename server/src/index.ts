@@ -1,36 +1,38 @@
-import express, {Response, Request} from 'express';
+import express, { Response, Request } from "express";
 import { configDotenv } from "dotenv";
-import { authRouter } from './routes/auth.route';
-import { projectRouter } from './routes/project.route';
-import { logger } from './config/logger';
-import { errorHandler, notFoundHandler } from './middlewares/error.middleware';
-import cors from 'cors'
-import cookieParser from 'cookie-parser';
-import { commitRouter } from './routes/commit.route';
-import { repoRouter } from './routes/repo.route';
+import { authRouter } from "./routes/auth.route";
+import { projectRouter } from "./routes/project.route";
+import { logger } from "./config/logger";
+import { errorHandler, notFoundHandler } from "./middlewares/error.middleware";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import { commitRouter } from "./routes/commit.route";
+import { repoRouter } from "./routes/repo.route";
 const app = express();
 
 configDotenv();
 
 const PORT = 4000;
 
-app.use(cors({
-   origin: ["http://localhost:3000"],
-  methods : ["GET", "PATCH", "POST"],
-  credentials: true 
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "PATCH", "POST"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/", (req : Request, res : Response) => {
-    res.status(200).json("Healthy server!");
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).json("Healthy server!");
 });
 
 app.use("/api/auth", authRouter);
 app.use("/api/repo", repoRouter);
-app.use("/api", projectRouter)
+app.use("/api", projectRouter);
 app.use("/api", commitRouter);
-
 
 // Handle 404 errors
 app.use(notFoundHandler);
@@ -40,7 +42,5 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
-  logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
-})
-
-
+  logger.info(`Environment: ${process.env.NODE_ENV || "development"}`);
+});

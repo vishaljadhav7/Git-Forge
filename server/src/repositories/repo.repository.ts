@@ -135,4 +135,17 @@ export class RepoRepository {
       throw new InternalServerError("Failed to query source code embeddings");
     }
   }
+
+  async getAllQuestions( userId: string){
+    try {
+     return await prisma.question.findMany({
+        where : {
+          userId : userId
+        }
+      })
+    } catch (error) {
+
+      throw new InternalServerError("Failed to query source code embeddings");
+    }
+  }
 }

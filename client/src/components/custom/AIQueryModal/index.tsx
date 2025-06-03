@@ -221,7 +221,7 @@ const AIQueryModal: React.FC<AIQueryModalProps> = ({ isOpen, onClose, data, proj
                 </Card>
 
                 {/* Summary */}
-                {data.summary && (
+                {!isViewMode && data.summary && (
                   <Card className="border-l-4 border-l-blue-500 bg-blue-50/50">
                     <CardHeader className="pb-1">
                       <CardTitle className="text-lg flex items-center gap-2">
@@ -236,7 +236,7 @@ const AIQueryModal: React.FC<AIQueryModalProps> = ({ isOpen, onClose, data, proj
                 )}
 
                 {/* Additional Notes */}
-                {data.additionalNotes && (
+                {!isViewMode && data.additionalNotes && (
                   <Card className="border-l-4 border-l-amber-500 bg-amber-50/50">
                     <CardHeader className="pb-1">
                       <CardTitle className="text-lg flex items-center gap-2">
