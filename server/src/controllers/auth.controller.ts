@@ -61,4 +61,18 @@ export class AuthController {
       next(error);
     }
   };
+
+  signOut =  async (req : Request, res : Response, next : NextFunction) => { 
+    try {
+      res
+     .status(StatusCodes.OK)
+     .clearCookie("token")
+     .json({message : "sign out successfully", success : true})
+     
+     return 
+      
+    } catch (error) {
+        next(error);
+    } 
+  }
 }

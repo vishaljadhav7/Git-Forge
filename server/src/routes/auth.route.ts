@@ -15,4 +15,6 @@ authRouter.post("/sign-up", validateRequestBody(signUpSchema), authController.si
 
 authRouter.post("/sign-in", validateRequestBody(signInSchema) , authController.signIn);
 
+authRouter.post("/sign-out", authController.signOut)
+
 export {authRouter};

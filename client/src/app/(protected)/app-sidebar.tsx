@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { LayoutDashboard, Bot, CreditCard , ChevronUp, User2} from "lucide-react";
 import {
   DropdownMenu,
@@ -8,7 +9,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
 import {
   Sidebar,
   SidebarContent,
@@ -27,8 +27,14 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useAppSelector } from "@/store/hooks";
+import { useAppSelector , useAppDispatch} from "@/store/hooks";
+import { removeUser } from "@/store/features/user/userSlice";
 import { useFetchAllProjectsQuery } from "@/store/features/api";
+import axios from "axios";
+
+
+
+// "/api/auth/sign-out"
 
 const sidebarItems = [
   {
@@ -52,11 +58,26 @@ const sidebarItems = [
 
 const AppSidebar = () => {
   const pathName = usePathname();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const userInfo = useAppSelector(store => store.user.userInfo)
   const {open} = useSidebar()
-  const projectId = "1";
- 
+  
   const {data : projects, isLoading} = useFetchAllProjectsQuery();
+  
+  const projectId = projects ? projects[0].id : null ;
+
+  const handleLogout = async () => {
+   try {
+    await axios.post("http://localhost:4000/api/auth/sign-out", {}, {
+      withCredentials : true
+    });
+   dispatch(removeUser());
+   router.push("/");
+   } catch (error) {
+    console.error(error)
+   }
+  }
 
   return (
     <Sidebar collapsible="icon" variant="floating">
@@ -152,13 +173,17 @@ const AppSidebar = () => {
                   side="top"
                   className="w-[220px] absolute bottom-2"
                 >
-                  <DropdownMenuItem>
-                    <span>Account</span>
-                  </DropdownMenuItem>
+                  <Link 
+                  href={"/billing"}
+                  >                  
                   <DropdownMenuItem>
                     <span>Billing</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  </Link>
+
+                  <DropdownMenuItem
+                  onClick={handleLogout}
+                  >
                     <span>Sign out</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
