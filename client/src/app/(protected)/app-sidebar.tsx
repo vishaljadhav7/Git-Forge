@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { LayoutDashboard, Bot, CreditCard , ChevronUp, User2} from "lucide-react";
+import { LayoutDashboard, Bot, CreditCard , ChevronUp, User2, Loader2} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,10 +32,6 @@ import { removeUser } from "@/store/features/user/userSlice";
 import { useFetchAllProjectsQuery } from "@/store/features/api";
 import axios from "axios";
 
-
-
-// "/api/auth/sign-out"
-
 const sidebarItems = [
   {
     title: "Dashboard",
@@ -64,8 +60,7 @@ const AppSidebar = () => {
   const {open} = useSidebar()
   
   const {data : projects, isLoading} = useFetchAllProjectsQuery();
-  
-  const projectId = projects ? projects[0].id : null ;
+
 
   const handleLogout = async () => {
    try {
@@ -119,7 +114,7 @@ const AppSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               {isLoading ? 
-              <h3 className="text-2xl text-black font-bold p-2">Loading...</h3>
+              <Loader2 className="animate-spin text-center ml-6"/>
                :
               <>              
               {projects?.map((project) => {
@@ -132,10 +127,11 @@ const AppSidebar = () => {
                           className={cn(
                             "rounded-sm border size-6 flex items-center justify-center text-sm bg-white text-primary",
                             {
-                              "bg-primary text-white": projectId === project.id,
+                              "bg-primary text-white": `/project/${project.id}` === pathName, 
                             }
                           )}
                         >
+                          
                             {project.projectName.charAt(0).toUpperCase()}
                         </div>
                         <span>{project.projectName}</span>
