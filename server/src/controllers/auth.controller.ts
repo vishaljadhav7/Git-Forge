@@ -4,12 +4,6 @@ import { SignInSchemaType, SignUpSchemaType } from "../schema/auth.schema";
 import { StatusCodes } from "http-status-codes";
 import { logger } from "../config/logger";
 
-const options = {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  maxAge: 3600000, // 1 hour
-};
-
 export class AuthController {
   private authService: AuthService;
 
@@ -28,11 +22,19 @@ export class AuthController {
 
       const { user, token } = await this.authService.signUp(userData);
 
-      res.status(StatusCodes.CREATED).cookie("token", token, options).json({
-        message: "User registered successfully",
-        success: true,
-        data: user,
-      });
+      res
+        .status(StatusCodes.CREATED)
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 3600000, // 1 hour
+          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        })
+        .json({
+          message: "User registered successfully",
+          success: true,
+          data: user,
+        });
       return;
     } catch (error) {
       next(error);
@@ -50,11 +52,19 @@ export class AuthController {
 
       const { user, token } = await this.authService.signIn(email, password);
 
-      res.status(StatusCodes.OK).cookie("token", token, options).json({
-        message: "User authenticated successfully",
-        success: true,
-        data: user,
-      });
+      res
+        .status(StatusCodes.OK)
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 3600000, // 1 hour
+          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        })
+        .json({
+          message: "User authenticated successfully",
+          success: true,
+          data: user,
+        });
 
       return;
     } catch (error) {
@@ -62,17 +72,16 @@ export class AuthController {
     }
   };
 
-  signOut =  async (req : Request, res : Response, next : NextFunction) => { 
+  signOut = async (req: Request, res: Response, next: NextFunction) => {
     try {
       res
-     .status(StatusCodes.OK)
-     .clearCookie("token")
-     .json({message : "sign out successfully", success : true})
-     
-     return 
-      
+        .status(StatusCodes.OK)
+        .clearCookie("token")
+        .json({ message: "sign out successfully", success: true });
+
+      return;
     } catch (error) {
-        next(error);
-    } 
-  }
+      next(error);
+    }
+  };
 }
