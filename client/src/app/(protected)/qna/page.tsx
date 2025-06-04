@@ -52,7 +52,8 @@ const QnA: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get<ApiResponse>("http://localhost:4000/api/repo/questions", {
+      
+      const response = await axios.get<ApiResponse>(`${process.env.NEXT_PUBLIC_URL}/api/repo/questions`, {
         withCredentials: true,
         timeout: 10000, // 10 second timeout
       });

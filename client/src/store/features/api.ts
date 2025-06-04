@@ -5,7 +5,7 @@ import { IProject, ICreateProjectData, ICommit} from "../types";
 export const api = createApi({
     reducerPath : "api",
     baseQuery : fetchBaseQuery({
-        baseUrl : "http://localhost:4000/api",
+        baseUrl : `${process.env.NEXT_PUBLIC_URL}/api`,
         credentials : "include",
     }),
     tagTypes: ["Projects", "Commits", "Questions"],

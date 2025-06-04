@@ -63,12 +63,13 @@ const Project = ({ params }: { params: Promise<{ projectId: string }> }) => {
     }
   };
 
+
   const handleQueryRepo = async () => {
     if (!queryText.trim()) return;
 
     setQueryLoading(true);
     try {
-      const {data} = await axios.get("http://localhost:4000/api/repo/query", {
+      const {data} = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/repo/query`, {
         params: {
           projectId,
           question: queryText,

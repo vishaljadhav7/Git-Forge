@@ -50,10 +50,9 @@ const SignUp = () => {
     try {
       
       signUpSchema.parse(data);
-
       
       const response = await axios.post(
-        "http://localhost:4000/api/auth/sign-up",
+         `${process.env.NEXT_PUBLIC_URL}/api/auth/sign-up`,
         data,
         {
           withCredentials: true,

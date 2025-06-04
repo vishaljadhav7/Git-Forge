@@ -69,7 +69,7 @@ const AppSidebar = () => {
 
   const handleLogout = async () => {
    try {
-    await axios.post("http://localhost:4000/api/auth/sign-out", {}, {
+    await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/auth/sign-out`, {}, {
       withCredentials : true
     });
    dispatch(removeUser());
