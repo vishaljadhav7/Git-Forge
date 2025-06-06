@@ -2,7 +2,7 @@ import { GithubRepoLoader } from "@langchain/community/document_loaders/web/gith
 import { aiModel } from "./gemini.utils";
 import { genAI } from "./gemini.utils";
 import { logger } from "../config/logger";
-
+import { DocumentLoader } from "@langchain/core/document_loaders/base";
 
 
 export interface FileSummaries {
@@ -160,7 +160,7 @@ export const generateEmbeddingForFile = async (fileSummary: FileSummaries): Prom
 export const repoSummaryAndEmbeddings = async (url: string, branchName : string) => {
   try {
     logger.info(`Starting repository analysis for: ${url}`);
-    
+
     // Load repository
     const loader = new GithubRepoLoader(url, {
       accessToken: process.env.GITHUB_TOKEN!,

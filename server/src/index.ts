@@ -58,8 +58,8 @@ app.use(generalLimiter);
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "PATCH", "POST"],
+    origin: ["https://git-forge.vercel.app"],
+    methods: ["GET", "PATCH", "POST", "DELETE"],
     credentials: true,
   })
 );

@@ -4,7 +4,6 @@ import { logger } from "../config/logger";
 import { FileData, Question } from "../types";
 import { QueryResult } from "../types";
 
-
 export class RepoRepository {
   async addFileswithSummaryAndEmbeddings(
     data: FileData[],
@@ -46,9 +45,10 @@ export class RepoRepository {
             }
 
             // Formatting the vector as a string for pgvector
-            const vectorString = `[${fileItem.summaryEmbedding.values.join(",")}]`;
+            const vectorString = `[${fileItem.summaryEmbedding.values.join(
+              ","
+            )}]`;
 
-            
             await prisma.$executeRaw`
               UPDATE "SourceCodeEmbedding"
               SET "summaryEmbedding" = ${vectorString}::vector
@@ -73,37 +73,45 @@ export class RepoRepository {
         const errorMessage =
           error instanceof Error ? error.message : String(error);
         logger.error(`Failed to process file: ${fileItem.fileName}`);
-
       }
     }
 
-    return ;
+    return;
   }
 
-  async saveQuestion(questionDetails : Question, userId : string){
-   try {
-    logger.info(`Creating question for project : ${questionDetails.projectId} for user: ${userId}`);
+  async saveQuestion(questionDetails: Question, userId: string) {
+    try {
+      logger.info(
+        `Creating question for project : ${questionDetails.projectId} for user: ${userId}`
+      );
 
-    if(!questionDetails.projectId || !userId || !questionDetails.answer || !questionDetails.question){
-      throw new BadRequestError("Question details required");
-    }
- 
-    await prisma.question.create({
-      data : {
-        ...questionDetails,
-        userId : userId
+      if (
+        !questionDetails.projectId ||
+        !userId ||
+        !questionDetails.answer ||
+        !questionDetails.question
+      ) {
+        throw new BadRequestError("Question details required");
       }
-    }) 
 
-    logger.info(`Created question for project : ${questionDetails.projectId} for user: ${userId}`); 
-   } catch (error) {
-    logger.info(`Could not create question!`)
-     if(error instanceof BadRequestError){
-      throw error;
-     }
+      await prisma.question.create({
+        data: {
+          ...questionDetails,
+          userId: userId,
+        },
+      });
 
-     throw new InternalServerError("Could not save the question");
-   }
+      logger.info(
+        `Created question for project : ${questionDetails.projectId} for user: ${userId}`
+      );
+    } catch (error) {
+      logger.info(`Could not create question!`);
+      if (error instanceof BadRequestError) {
+        throw error;
+      }
+
+      throw new InternalServerError("Could not save the question");
+    }
   }
 
   async findSimilarSourceCode(
@@ -112,6 +120,17 @@ export class RepoRepository {
     limit: number = 10
   ): Promise<QueryResult[]> {
     try {
+
+      if (
+        !queryVector.every(
+          (val) => typeof val === "number" && !isNaN(val) && isFinite(val)
+        )
+      ) {
+        throw new Error(
+          "Invalid embedding values: must be array of finite numbers"
+        );
+      }
+
       const vectorAsString = JSON.stringify(queryVector);
 
       const result = (await prisma.$queryRaw` 
@@ -131,20 +150,21 @@ export class RepoRepository {
 
       return result;
     } catch (error) {
-
+      if(error instanceof Error){
+        throw error;
+      }
       throw new InternalServerError("Failed to query source code embeddings");
     }
   }
 
-  async getAllQuestions( userId: string){
+  async getAllQuestions(userId: string) {
     try {
-     return await prisma.question.findMany({
-        where : {
-          userId : userId
-        }
-      })
+      return await prisma.question.findMany({
+        where: {
+          userId: userId,
+        },
+      });
     } catch (error) {
-
       throw new InternalServerError("Failed to query source code embeddings");
     }
   }

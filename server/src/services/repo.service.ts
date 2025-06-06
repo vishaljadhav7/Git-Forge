@@ -12,6 +12,7 @@ import { IProject } from "../models/project.model";
 import { promptForQueryOnRepo } from "../utils/prompt.utils";
 import { model, aiModel } from "../utils/gemini.utils";
 import { QueryResult } from "../types";
+
 export class RepoService {
   private projectRepository: ProjectRepository;
   private repoRepository: RepoRepository;
