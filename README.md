@@ -1,4 +1,4 @@
-#) Git Forge 🚀
+Git Forge 🚀
 
 AI-Powered Code Collaboration Platform
 Git Forge transforms GitHub repositories into intelligent, searchable codebases using AI. Ask questions about any codebase in natural language and get instant, contextual answers with relevant code snippets.
